@@ -3,7 +3,7 @@ I'm at that point in my life where I need to calculate, estimate, and predict my
 
 # Accessing
 ## Access via Heroku
-**Working website as of 2022/07/29:** `gpacalcph.heroku.net`
+**Working website as of 2022/07/29:** `gpacalcph.herokuapp.com/`
 
 ## Access via localhost
 1. Git clone the repo via SSH, HTTPS, or your preferred option

@@ -1,4 +1,4 @@
-# Welcome
+# GPA calculator for the lazy
 I'm at that point in my life where I need to calculate, estimate, and predict my GPA every term (and potentially my CGPA to see if I'm still in a good standing lmao). 
 
 # Accessing

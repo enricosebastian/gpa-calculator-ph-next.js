@@ -10,11 +10,13 @@ class TableRowClass extends React.Component {
 
     changeCourseGrade = (event) => {
         let newCourseGrade = event.target.value;
+        newCourseGrade = isNaN(newCourseGrade) ? 0 : newCourseGrade;
         this.props.changeCourseGrade(this.props.course.id, this.props.termNumber, newCourseGrade);
     };
 
     changeCourseUnit = (event) => {
         let newCourseUnit = event.target.value;
+        newCourseUnit = isNaN(newCourseUnit) ? 0 : newCourseUnit;
         this.props.changeCourseUnit(this.props.course.id, this.props.termNumber, newCourseUnit);
     };
 

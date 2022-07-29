@@ -15,6 +15,18 @@ class App extends React.Component {
         };
     }
 
+    addTerm = () => {
+        this.setState((prevState) => ({
+            terms: [...prevState.terms, {termNumber: prevState.terms.length+1, classes: [], gpa: 0.0}]
+        }));
+    };
+
+    addClass = (termNumber) => {
+        this.setState((prevState) => ({
+            terms: prevState.terms.map(t => t.termNumber === termNumber ? {...t, classes: [...t.classes, {id: t.classes.length, courseName: "", courseCode: "", courseUnit: 0, courseGrade: 0}]} : t)
+        }));
+    };
+
     changeSelectedTerm = (newSelectedTerm) => {
         this.setState(() => ({
             selectedTerm: newSelectedTerm
@@ -51,11 +63,11 @@ class App extends React.Component {
 
     render() {
         let termButtons = this.state.terms.map(t => <TermButtonClass key={"TermButtonClass_"+t.termNumber} termNumber = {t.termNumber} handleOnClick = {this.changeSelectedTerm}/>);
-        let tableRowClass = this.state.terms.map(t => <TableClass key={"TableClass_"+t.termNumber} termNumber={t.termNumber} classes = {t.classes} changeCourseName={this.changeCourseName} changeCourseUnit={this.changeCourseUnit} changeCourseGrade={this.changeCourseGrade} changeCourseCode={this.changeCourseCode} />);
+        let tableRowClass = this.state.terms.map(t => <TableClass key={"TableClass_"+t.termNumber} termNumber={t.termNumber} classes = {t.classes} changeCourseName={this.changeCourseName} changeCourseUnit={this.changeCourseUnit} changeCourseGrade={this.changeCourseGrade} changeCourseCode={this.changeCourseCode} addClass = {this.addClass}/>);
         let selectedTerm = tableRowClass[this.state.selectedTerm - 1];
         return (
             <React.Fragment>
-                {termButtons}
+                {termButtons} <button onClick={this.addTerm}>Add</button>
                 <h1>hello</h1>
                 {selectedTerm}
             </React.Fragment>

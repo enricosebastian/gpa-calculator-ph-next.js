@@ -2,10 +2,10 @@
 I'm at that point in my life where I need to calculate, estimate, and predict my GPA every term (and potentially my CGPA to see if I'm still in a good standing lmao). 
 
 # Accessing
-## Access via Heroku
+### Access via Heroku
 **Working website as of 2022/07/29:** `gpacalcph.herokuapp.com/`
 
-## Access via localhost
+### Access via localhost
 1. Git clone the repo via SSH, HTTPS, or your preferred option
 2. Make sure to run the command line in the exact location of `
 university-gpa-calculator `

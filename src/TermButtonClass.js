@@ -7,7 +7,7 @@ class TermButtonClass extends React.Component {
     };
 
     render() {
-        return <button onClick={this.changeSelectedTerm}>Term {this.props.termNumber}</button>
+        return <button disabled={this.props.termNumber === this.props.selectedTerm} onClick={this.changeSelectedTerm}>Term {this.props.termNumber}</button>
     }
 }
 

@@ -62,7 +62,7 @@ class App extends React.Component {
     };
 
     render() {
-        let termButtons = this.state.terms.map(t => <TermButtonClass key={"TermButtonClass_"+t.termNumber} termNumber = {t.termNumber} handleOnClick = {this.changeSelectedTerm}/>);
+        let termButtons = this.state.terms.map(t => <TermButtonClass key={"TermButtonClass_"+t.termNumber} termNumber = {t.termNumber} selectedTerm = {this.state.selectedTerm} handleOnClick = {this.changeSelectedTerm}/>);
         let tableRowClass = this.state.terms.map(t => <TableClass key={"TableClass_"+t.termNumber} termNumber={t.termNumber} classes = {t.classes} changeCourseName={this.changeCourseName} changeCourseUnit={this.changeCourseUnit} changeCourseGrade={this.changeCourseGrade} changeCourseCode={this.changeCourseCode} addClass = {this.addClass}/>);
         let selectedTerm = tableRowClass[this.state.selectedTerm - 1];
         return (

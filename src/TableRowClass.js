@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 class TableRowClass extends React.Component {
 
     changeCourseName = (event) => {
@@ -28,11 +27,12 @@ class TableRowClass extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <input onChange={this.changeCourseName} value={this.props.course.courseName}/>
-                <input onChange={this.changeCourseCode} value={this.props.course.courseCode}/>
-                <input onChange={this.changeCourseUnit} value={this.props.course.courseUnit}/>
-                <input onChange={this.changeCourseGrade} value={this.props.course.courseGrade}/>
-                <br/>
+                <tr>
+                    <td><input onChange={this.changeCourseName} value={this.props.course.courseName}/></td>
+                    <td><input onChange={this.changeCourseCode} value={this.props.course.courseCode}/></td>
+                    <td><input onChange={this.changeCourseUnit} value={this.props.course.courseUnit}/></td>
+                    <td><input onChange={this.changeCourseGrade} value={this.props.course.courseGrade}/></td>
+                </tr>
             </React.Fragment>
         );
     }

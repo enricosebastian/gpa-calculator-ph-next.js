@@ -17,7 +17,7 @@ class App extends React.Component {
 
     addTerm = () => {
         this.setState((prevState) => ({
-            terms: [...prevState.terms, {termNumber: prevState.terms.length+1, classes: [], gpa: 0.0}]
+            terms: [...prevState.terms, {termNumber: prevState.terms.length+1, classes: [{id: 0, courseName: "", courseCode: "", courseUnit: 0, courseGrade: 0}], gpa: 0.0}]
         }));
     };
 
@@ -67,8 +67,8 @@ class App extends React.Component {
         let selectedTerm = tableRowClass[this.state.selectedTerm - 1];
         return (
             <React.Fragment>
+                <h1>GPA calculator for the lazy</h1>
                 {termButtons} <button onClick={this.addTerm}>Add</button>
-                <h1>hello</h1>
                 {selectedTerm}
             </React.Fragment>
         );

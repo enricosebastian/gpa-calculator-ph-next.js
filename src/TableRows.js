@@ -22,7 +22,7 @@ class TableRows extends React.Component {
             <React.Fragment>
                 {tableRows}
                 <tr>
-                    <td colSpan="3">term gpa</td>
+                    <td colSpan="3">Term GPA</td>
                     <td>{gpa.toFixed(3)}</td>
                 </tr>
             </React.Fragment>

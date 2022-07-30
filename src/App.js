@@ -1,7 +1,4 @@
 import React from 'react';
-import TermButtonClass from './TermButtonClass';
-import TableClass from './TableClass';
-
 
 import Title from './Title';
 import TableApp from './TableApp';
@@ -68,18 +65,6 @@ class App extends React.Component {
     };
 
     render() {
-        // let termButtons = this.state.terms.map(t => <TermButtonClass key={"TermButtonClass_"+t.termNumber} termNumber = {t.termNumber} selectedTerm = {this.state.selectedTerm} handleOnClick = {this.changeSelectedTerm}/>);
-        // let tableRowClass = this.state.terms.map(t => <TableClass key={"TableClass_"+t.termNumber} termNumber={t.termNumber} classes = {t.classes} changeCourseName={this.changeCourseName} changeCourseUnit={this.changeCourseUnit} changeCourseGrade={this.changeCourseGrade} changeCourseCode={this.changeCourseCode} addClass = {this.addClass}/>);
-        // let selectedTerm = tableRowClass[this.state.selectedTerm - 1];
-        // return (
-        //     <React.Fragment>
-        //         {/* <h1>GPA calculator for the lazy</h1>
-        //         {termButtons} <button onClick={this.addTerm}>Add</button>
-        //         {selectedTerm} */}
-        //         <Table/>
-        //     </React.Fragment>
-        // );
-
         return (
             <React.Fragment>
                 <Title/>

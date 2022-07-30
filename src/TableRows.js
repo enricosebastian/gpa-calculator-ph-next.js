@@ -14,12 +14,16 @@ class TableRows extends React.Component {
                     changeCourseGrade={this.props.changeCourseGrade} 
                     />
         );
+
+        let totalCourseUnits = this.props.classes.map(c => parseFloat(c.courseUnit)).reduce((prevValue,currentValue) => prevValue + currentValue, 0);
+        let totalGpaCourseUnits = this.props.classes.map(c => parseFloat(c.courseGrade)).reduce((prevValue,currentValue, index) => prevValue + (currentValue*this.props.classes.map(c => parseFloat(c.courseUnit))[index]), 0);
+        let gpa = isNaN(totalGpaCourseUnits/totalCourseUnits) ? 0 : totalGpaCourseUnits/totalCourseUnits;
         return (
             <React.Fragment>
                 {tableRows}
                 <tr>
                     <td colSpan="3">term gpa</td>
-                    <td>3.0</td>
+                    <td>{gpa}</td>
                 </tr>
             </React.Fragment>
         );

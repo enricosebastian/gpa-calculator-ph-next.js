@@ -9,8 +9,18 @@ class TableApp extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <Table classes={this.props.classes}/>
-                <AddClassButton selectedTerm={this.props.selectedTerm} addClass={this.props.addClass}/>
+                <Table 
+                    selectedTerm={this.props.selectedTerm} 
+                    classes={this.props.classes}
+                    changeCourseCode={this.props.changeCourseCode}
+                    changeCourseUnit={this.props.changeCourseUnit}
+                    changeCourseName={this.props.changeCourseName}
+                    changeCourseGrade={this.props.changeCourseGrade}
+                />
+                <AddClassButton 
+                    selectedTerm={this.props.selectedTerm} 
+                    addClass={this.props.addClass}
+                />
             </React.Fragment>
         );
     }

@@ -8,7 +8,14 @@ class Table extends React.Component {
         return (
             <table>
                 <TableHead/>
-                <TableRows classes={this.props.classes}/>
+                <TableRows 
+                    selectedTerm={this.props.selectedTerm} 
+                    classes={this.props.classes}
+                    changeCourseCode={this.props.changeCourseCode}
+                    changeCourseUnit={this.props.changeCourseUnit}
+                    changeCourseName={this.props.changeCourseName}
+                    changeCourseGrade={this.props.changeCourseGrade}
+                />
             </table>
         );
     

@@ -83,8 +83,21 @@ class App extends React.Component {
         return (
             <React.Fragment>
                 <Title/>
-                <TermSelectorButtons terms={this.state.terms} selectedTerm={this.state.selectedTerm} changeSelectedTerm={this.changeSelectedTerm}/><AddTermButton addTerm={this.addTerm}/>
-                <TableApp classes={this.state.terms.find(t => (t.termNumber === this.state.selectedTerm)).classes} selectedTerm={this.state.selectedTerm} addClass={this.addClass}/>
+                <TermSelectorButtons 
+                    terms={this.state.terms} 
+                    selectedTerm={this.state.selectedTerm} 
+                    changeSelectedTerm={this.changeSelectedTerm}
+                />
+                <AddTermButton addTerm={this.addTerm}/>
+                < TableApp 
+                    classes={this.state.terms.find(t => (t.termNumber === this.state.selectedTerm)).classes} 
+                    selectedTerm={this.state.selectedTerm} 
+                    addClass={this.addClass}
+                    changeCourseCode={this.changeCourseCode}
+                    changeCourseUnit={this.changeCourseUnit}
+                    changeCourseName={this.changeCourseName}
+                    changeCourseGrade={this.changeCourseGrade}
+                />
             </React.Fragment>
         );
     }

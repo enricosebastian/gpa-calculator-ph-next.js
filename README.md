@@ -3,7 +3,7 @@ I'm at that point in my life where I need to calculate, estimate, and predict my
 
 # Accessing
 ### Access via Heroku
-**Working website as of 2022/07/29:** `gpacalcph.herokuapp.com/`
+**Working website as of 2022/07/29:** `gpacalcph.herokuapp.com`
 
 ### Access via localhost
 1. Git clone the repo via SSH, HTTPS, or your preferred option
@@ -14,6 +14,11 @@ university-gpa-calculator `
 
 # Things to know
 The current calculation for the GPA and CGPA is based off of the DLSU 2021 Handbook. Future goals include getting information for other universities as well
+
+# To do list
+- Add UUID generator package (or maybe something that gives me some unique keys) so that I have some easier delete capabilities
+- Deleting capabilities for courses and entire terms
+- The CGPA calculator
 
 # Motivation for creation
 Why create a complicated and clunky ***Excel sheet*** when you can create a complicated and clunky ***website*** instead? 

@@ -1,29 +1,25 @@
 import React from 'react';
-
-import Table from './Table';
-import AddClassButton from './AddClassButton';
-
+import TableApp from './TableApp';
+import CgpaApp from './CgpaApp';
 
 
-class TableApp extends React.Component {
+class Content extends React.Component {
     render() {
         return (
-            <div className="content">
-                <Table 
+            <div className="contents">
+                < TableApp 
+                    classes={this.props.classes} 
                     selectedTerm={this.props.selectedTerm} 
-                    classes={this.props.classes}
+                    addClass={this.props.addClass}
                     changeCourseCode={this.props.changeCourseCode}
                     changeCourseUnit={this.props.changeCourseUnit}
                     changeCourseName={this.props.changeCourseName}
                     changeCourseGrade={this.props.changeCourseGrade}
                 />
-                <AddClassButton 
-                    selectedTerm={this.props.selectedTerm} 
-                    addClass={this.props.addClass}
-                />
+                < CgpaApp terms={this.props.terms} />
             </div>
         );
     }
 }
 
-export default TableApp;
+export default Content;

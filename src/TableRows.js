@@ -6,6 +6,7 @@ class TableRows extends React.Component {
     render() {
         let tableRows = this.props.classes.map(
             c => < TableRow 
+                    key={c.id}
                     selectedTerm={this.props.selectedTerm} 
                     class={c} 
                     changeCourseCode={this.props.changeCourseCode}
@@ -20,11 +21,13 @@ class TableRows extends React.Component {
         let gpa = isNaN(totalGpaCourseUnits/totalCourseUnits) ? 0 : totalGpaCourseUnits/totalCourseUnits;
         return (
             <React.Fragment>
-                {tableRows}
-                <tr>
-                    <td colSpan="3">Term GPA</td>
-                    <td>{gpa.toFixed(3)}</td>
-                </tr>
+                <tbody>
+                    {tableRows}
+                    <tr>
+                        <td colSpan="3">Term GPA</td>
+                        <td>{gpa.toFixed(3)}</td>
+                    </tr>
+                </tbody>
             </React.Fragment>
         );
     }

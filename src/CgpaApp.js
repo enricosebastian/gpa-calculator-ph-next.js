@@ -5,7 +5,7 @@ class CgpaApp extends React.Component {
     render() {
         return (
             <div className="content">
-                <Checkboxes terms={this.props.terms}/>
+                <Checkboxes terms={this.props.terms} changeIsChecked={this.props.changeIsChecked}/>
                 CGPA: 
             </div>
         );

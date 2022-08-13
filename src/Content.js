@@ -16,7 +16,7 @@ class Content extends React.Component {
                     changeCourseName={this.props.changeCourseName}
                     changeCourseGrade={this.props.changeCourseGrade}
                 />
-                < CgpaApp terms={this.props.terms} />
+                < CgpaApp terms={this.props.terms} changeIsChecked={this.props.changeIsChecked}/>
             </div>
         );
     }

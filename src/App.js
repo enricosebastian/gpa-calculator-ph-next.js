@@ -31,6 +31,12 @@ class App extends React.Component {
         }));
     };
 
+    changeIsChecked = (termNumber) => {
+        this.setState((prevState)=>({
+            terms: prevState.terms.map(t => t.termNumber === termNumber ? {...t, isChecked: !t.isChecked}: t)
+        }));
+    }
+
     changeSelectedTerm = (newSelectedTerm) => {
         this.setState(() => ({
             selectedTerm: newSelectedTerm
@@ -83,6 +89,7 @@ class App extends React.Component {
                     changeCourseUnit={this.changeCourseUnit}
                     changeCourseName={this.changeCourseName}
                     changeCourseGrade={this.changeCourseGrade}
+                    changeIsChecked={this.changeIsChecked}
                     terms={this.state.terms}
                 />
             </React.Fragment>

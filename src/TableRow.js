@@ -32,10 +32,10 @@ class TableRow extends React.Component {
                     <input tabIndex={1} onChange={this.changeCourseName} value={this.props.class.courseName} />
                 </td>
                 <td>
-                    <input tabIndex={2} onChange={this.changeCourseUnit} value={this.props.class.courseUnit} />
+                    <input tabIndex={3} onChange={this.changeCourseGrade} value={this.props.class.courseGrade} />
                 </td>
                 <td>
-                    <input tabIndex={3} onChange={this.changeCourseGrade} value={this.props.class.courseGrade} />
+                    <input tabIndex={2} onChange={this.changeCourseUnit} value={this.props.class.courseUnit} />
                 </td>
             </tr>
         );

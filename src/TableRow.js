@@ -26,10 +26,10 @@ class TableRow extends React.Component {
         return (
             <tr>
                 <td>
-                    <input tabIndex={0} onChange={this.changeCourseCode} value={this.props.class.courseCode} />
+                    <input tabIndex={1} onChange={this.changeCourseName} value={this.props.class.courseName} />
                 </td>
                 <td>
-                    <input tabIndex={1} onChange={this.changeCourseName} value={this.props.class.courseName} />
+                    <input tabIndex={0} onChange={this.changeCourseCode} value={this.props.class.courseCode} />
                 </td>
                 <td>
                     <input tabIndex={3} onChange={this.changeCourseGrade} value={this.props.class.courseGrade} />

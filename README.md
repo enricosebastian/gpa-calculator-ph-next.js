@@ -1,27 +1,38 @@
-# GPA calculator for the lazy
-I'm at that point in my life where I need to calculate, estimate, and predict my GPA every term (and potentially my CGPA to see if I'm still in a good standing lmao). 
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-# Accessing
-### Access via Heroku
-**Working website as of 2022/07/29:** `gpacalcph.herokuapp.com`
+## Getting Started
 
-### Access via localhost
-1. Git clone the repo via SSH, HTTPS, or your preferred option
-2. Make sure to run the command line in the exact location of `
-university-gpa-calculator `
-3. Run the cmd command: `npm install`
-4. Once command successfully finishes, run the cmd command `npm start` like any normal React app
+First, run the development server:
 
-# Things to know
-The current calculation for the GPA and CGPA is based off of the DLSU 2021 Handbook. Future goals include getting information for other universities as well
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+```
 
-# To do list
-- Add UUID generator package (or maybe something that gives me some unique keys) so that I have some easier delete capabilities
-- Deleting capabilities for courses and entire terms
-- The CGPA calculator
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-# Motivation for creation
-Why create a complicated and clunky ***Excel sheet*** when you can create a complicated and clunky ***website*** instead? 
+You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-So instead of manually creating something that takes about an hour, automate the process by creating something that takes about three weeks!
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

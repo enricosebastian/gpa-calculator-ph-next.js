@@ -1,14 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "@/styles/Table.module.scss";
 
-export default function Table({term}) {
+export default function Table({courses, changeCourseCode}) {
 
-    const courseData = term.courses.map(course => 
-        <tr key={course.courseCode}>
-            <td>{course.courseCode}</td>
-            <td>{course.title}</td>
-            <td>{course.grade}</td>
-            <td>{course.units}</td>
+    const clickedCode = (event) => {
+        // changeCourseCode(event.target.textContext, );
+        // console.log(event.target.textContent);
+    }
+
+    const updatingValue = (parameter, event) => {
+        // console.log(parameter+ ": "+ event.target.value);
+        console.log("target.value: "+event.target.value);
+        console.log("target.defaultValue: "+event.target.defaultValue);
+        changeCourseCode(event.target.defaultValue, event.target.value);
+    }
+
+    const courseData = courses.map(course => 
+        <tr key={`${course.code}-tr`}>
+            <td key={`${course.code}-code--td`}>
+                <input className={styles.table__code__input} onChange={() => updatingValue("code", event)} value={course.code}/>
+            </td>
+            <td key={`${course.code}-title--td`}>
+                <input className={styles.table__title__input} onChange={() => updatingValue("title", event)} value={course.title}/>
+            </td>
+            <td key={`${course.code}-grade--td`} className={styles.table__grade__cell}>
+                {course.grade}
+            </td>
+            <td key={`${course.code}-units--td`} className={styles.table__units__cell}>
+                {course.units}
+            </td>
         </tr>
     );
 
@@ -28,8 +48,8 @@ export default function Table({term}) {
                     <tr>
                         <td>COURSE CODE</td>
                         <td>Course title here</td>
-                        <td>0.0</td>
-                        <td>0.0</td>
+                        <td className={styles.table__grade__cell}>0.0</td>
+                        <td className={styles.table__units__cell}>0.0</td>
                     </tr> 
                 }
                 

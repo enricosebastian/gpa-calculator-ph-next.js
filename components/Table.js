@@ -1,9 +1,7 @@
 import React from "react";
 import styles from "@/styles/Table.module.scss";
 
-export default function Table({term, setTerm}) {
-
-    console.log(term);
+export default function Table({term}) {
 
     const courseData = term.courses.map(course => 
         <tr key={course.courseCode}>
@@ -14,15 +12,11 @@ export default function Table({term, setTerm}) {
         </tr>
     );
 
-    const changeCourseCode = () => {
-        setTerm(prevState.map(prevState => prevState));
-    }
-
     return (
         <table className={styles.table__table__wrapper}>
             <thead>
                <tr>
-                    <th onClick={changeCourseCode}>Course code</th>
+                    <th>Course code</th>
                     <th>Course title</th>
                     <th>Grade</th>
                     <th>Units</th>

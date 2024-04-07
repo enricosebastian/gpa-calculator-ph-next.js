@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
+import Header from "./_components/Header";
+import Content from "./Content";
+import Footer from "./_components/Footer";
+
 export const metadata: Metadata = {
   title: "GPA Calculator",
   description: "Created for university students in the Philippines",
@@ -9,7 +13,11 @@ export const metadata: Metadata = {
 export default function RootLayout({children}: Readonly<{children: React.ReactNode;}>) {
   return (
     <html lang="en">
-        <body>{children}</body>
+        <body className="flex h-screen flex-col">
+          <Header></Header>
+          <div className="bg-yellow-500 flex-grow">content</div>
+          <Footer></Footer>
+        </body>
     </html>
   );
 }

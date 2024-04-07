@@ -1,7 +1,7 @@
 export default function Header() {
     return (
-        <div className="bg-blue-500 flex flex-col content-center items-center">
-            <div className="flex-initial grow bg-pink-500">GPA Calculator</div>
+        <div className="bg-red-500 h-1/5 flex justify-center items-center">
+            <div className="bg-pink-300 md:p-8 p-2 text-4xl border-solid border-black border-4 text-center">DLSU GPA CALCULATOR</div>
         </div>
     );
 }

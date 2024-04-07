@@ -1,5 +1,7 @@
 export default function Content() {
     return (
-        <div>these are the contents</div>
+        <div className="bg-fuchsia-400 flex-grow">
+            these are the contents
+        </div>
     );
 }

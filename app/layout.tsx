@@ -15,7 +15,7 @@ export default function RootLayout({children}: Readonly<{children: React.ReactNo
     <html lang="en">
         <body className="flex h-screen flex-col">
           <Header></Header>
-          <div className="bg-yellow-500 flex-grow">content</div>
+          <Content></Content>
           <Footer></Footer>
         </body>
     </html>

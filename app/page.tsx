@@ -1,7 +1,11 @@
+import Table from "./_components/Table";
+
 export default function Home() {
   return (
     <>
-      this is content
+      <div>
+        <Table></Table>
+      </div>
     </>
   );
 }

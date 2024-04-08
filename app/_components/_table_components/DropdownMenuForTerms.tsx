@@ -17,7 +17,7 @@ export default function DropdownMenuForTerms() {
                     <option value="term_11">term 11</option>
                     <option value="term_12">term 12</option>
                 </select>
-                <div className="px-2">x</div>
+                <div className="px-2"><button>x</button></div>
             </div>
             </td>
         </tr>

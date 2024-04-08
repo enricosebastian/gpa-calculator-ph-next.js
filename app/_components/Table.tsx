@@ -17,7 +17,7 @@ export default function Table() {
   return (
       <table className="table-fixed">
         <thead>
-          <DropdownMenuForTerms></DropdownMenuForTerms>
+          <DropdownMenuForTerms terms={terms}></DropdownMenuForTerms>
           <RowTitles></RowTitles>
         </thead>
 

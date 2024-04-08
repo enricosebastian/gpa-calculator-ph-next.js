@@ -12,8 +12,8 @@ export default function InitializeData(): Term[] {
     const term_1_courses: Course[] = [demo_course];
 
     const term_1: Term = {
-    term_name: "term_1",
-    courses: term_1_courses,
+        name: "term_1",
+        courses: term_1_courses,
     };
 
     const terms: Term[] = [term_1];
@@ -22,7 +22,7 @@ export default function InitializeData(): Term[] {
         const term_name = `term_${i}`;
 
         const term_item: Term = {
-            term_name: term_name,
+            name: term_name,
             courses: [],
         }
         

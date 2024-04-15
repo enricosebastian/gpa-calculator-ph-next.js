@@ -1,4 +1,5 @@
 export default function RowTitles() {
+
     return (
         <tr className="border-black border-solid border-[5px]">
             <td className="border-black border-solid border-[5px] w-40 pl-1">course_code</td>

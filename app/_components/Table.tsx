@@ -21,8 +21,7 @@ export default function Table() {
   }
 
   function returnSelectedTerm(): Term {
-
-    const data = terms.find(term => term.name === selectedTerm);
+    const data: Term = Object.assign({}, terms.find(term => term.name === selectedTerm));
 
     if (data === undefined) {
       return {

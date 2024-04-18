@@ -13,8 +13,26 @@ import Course from "../_models/Course";
 import { useState, useReducer } from "react";
 
 export default function Table() {
-  const terms: Term[] = InitializeData();
+  const [terms, dispatch] = useReducer(termsReducer, InitializeData());
   const [selectedTerm, setSelectedTerm] = useState(terms[0].name);
+
+  function termsReducer(terms, action) {
+
+    switch(action.type) {
+      case "added":
+        if (selectedTerm === '') {
+          console.log("Emtpy selected term error");
+        }
+        return terms;
+
+
+
+    }
+
+
+    return terms;
+  }
+
 
   function onDropdownChange(selected_term: string) {
     setSelectedTerm(selected_term);

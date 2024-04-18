@@ -56,6 +56,52 @@ export default function Table() {
 
           return term;
         });
+        break;
+
+      case Action.Modify:
+        if (selectedTerm === '') {
+          console.log("Emtpy selected term error. Returning default terms");
+          return terms;
+        }
+
+        if (data.new_course === null) {
+          console.log("Course entry is empty!");
+          return terms;
+        }
+
+        if (!terms.some(term => term.name === selectedTerm)) {
+          console.log(`Term "${selectedTerm}" does not exist in any of the terms list. Returning default terms`);
+          return terms;
+        }
+
+        const newTerms2 = terms.map(term => {
+          if(term.name === selectedTerm) {
+
+            const modified_course: Course = {
+              course_code: (data.new_course?.course_code) ? data.new_course.course_code : "",
+              course_title: (data.new_course?.course_title) ? data.new_course.course_title : "",
+              grade: (data.new_course?.grade) ? data.new_course.grade : 0.0,
+              unit: (data.new_course?.unit) ? data.new_course.unit : 0.0,
+            };
+
+            const modified_courses = term.courses.map(course => {
+              if (course.course_code === modified_course.course_code) {
+                return modified_course;
+              }
+
+              return course;
+            });
+
+            term.courses = modified_courses;
+            return term;
+          }
+
+          return term;
+        });
+
+
+
+
 
 
 
@@ -63,6 +109,13 @@ export default function Table() {
 
 
     return terms;
+  }
+
+  function handleAddCourse(new_course: Course) {
+    dispatch({
+      action: Action.Add,
+      new_course: new_course,
+    })
   }
 
 
@@ -95,7 +148,7 @@ export default function Table() {
         </thead>
 
         <tbody>
-          <RowInputs term={returnSelectedTerm()}></RowInputs>
+          <RowInputs term={returnSelectedTerm()} handleAddCourse={handleAddCourse}></RowInputs>
           
           <RowResults></RowResults>
         </tbody>

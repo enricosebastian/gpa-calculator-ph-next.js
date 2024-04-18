@@ -9,21 +9,53 @@ import InitializeData from "../_data/initialize";
 
 import Term from "../_models/Term";
 import Course from "../_models/Course";
+import Action from "../_models/Action";
 
 import { useState, useReducer } from "react";
+import Data from "../_models/Data";
 
 export default function Table() {
   const [terms, dispatch] = useReducer(termsReducer, InitializeData());
   const [selectedTerm, setSelectedTerm] = useState(terms[0].name);
 
-  function termsReducer(terms, action) {
+  function termsReducer(terms: Term[], data: Data) {
 
-    switch(action.type) {
-      case "added":
+    switch(data.action) {
+
+      case Action.Add:
         if (selectedTerm === '') {
-          console.log("Emtpy selected term error");
+          console.log("Emtpy selected term error. Returning default terms");
+          return terms;
         }
-        return terms;
+
+        if (data.new_course === null) {
+          console.log("Course entry is empty!");
+          return terms;
+        }
+
+        if (!terms.some(term => term.name === selectedTerm)) {
+          console.log(`Term "${selectedTerm}" does not exist in any of the terms list. Returning default terms`);
+          return terms;
+        }
+
+        const newTerms = terms.map(term => {
+          if(term.name === selectedTerm) {
+
+            const new_course: Course = {
+              course_code: (data.new_course?.course_code) ? data.new_course.course_code : "",
+              course_title: (data.new_course?.course_title) ? data.new_course.course_title : "",
+              grade: (data.new_course?.grade) ? data.new_course.grade : 0.0,
+              unit: (data.new_course?.unit) ? data.new_course.unit : 0.0,
+            };
+
+            const courses = [...term.courses, new_course];
+            term.courses = courses;
+
+            return term;
+          }
+
+          return term;
+        });
 
 
 

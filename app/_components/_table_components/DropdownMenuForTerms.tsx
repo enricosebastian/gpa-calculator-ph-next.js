@@ -10,7 +10,7 @@ interface Props {
 
 export default function DropdownMenuForTerms({terms, onDropdownChange}: Props) {
 
-    const options = terms.map(term => <option key={term.name} value={`${term.name}`}>{term.name}</option>);
+    const options = terms.map(term => <option key={term.id} value={`${term.id}`}>{term.name}</option>);
     
     return (
         <tr className="">

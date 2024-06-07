@@ -3,5 +3,5 @@ import Course from "./Course";
 
 export default interface Data {
     action: Action;
-    new_course?: Course;
+    course: Course;
 };

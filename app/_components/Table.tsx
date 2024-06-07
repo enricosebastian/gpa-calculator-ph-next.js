@@ -1,11 +1,13 @@
 "use client";
 
+import {v4 as uuid} from 'uuid';
+
 import DropdownMenuForTerms from "./_table_components/DropdownMenuForTerms";
 import RowTitles from "./_table_components/RowTitles";
 import RowInputs from "./_table_components/RowInputs";
 import RowResults from "./_table_components/RowResults";
 
-import InitializeData from "../_data/initialize";
+import InitializeData from "../_services/InitializationService";
 
 import Term from "../_models/Term";
 import Course from "../_models/Course";
@@ -13,39 +15,33 @@ import Action from "../_models/Action";
 
 import { useState, useReducer } from "react";
 import Data from "../_models/Data";
+import InitializationService from "../_services/InitializationService";
 
 export default function Table() {
-  const [terms, dispatch] = useReducer(termsReducer, InitializeData());
-  const [selectedTerm, setSelectedTerm] = useState(terms[0].name);
+  const [terms, dispatch] = useReducer(termsReducer, InitializationService.getInstance().initializeTerms());
+  const [selectedTermId, setSelectedTermId] = useState(terms[0].id);
 
   function termsReducer(terms: Term[], data: Data) {
 
+    if (selectedTermId === '' || !terms.some(term => term.name === selectedTermId))
+      throw new Error("Cannot add new course to a term that does not exist");
+
+    if (!data.course)
+      throw new Error("Cannot add new course since it's null");
+
+
     switch(data.action) {
-
       case Action.Add:
-        if (selectedTerm === '') {
-          console.log("Emtpy selected term error. Returning default terms");
-          return terms;
-        }
+        return terms.map(term => {
+          if(term.name === selectedTermId) {
 
-        if (data.new_course === null) {
-          console.log("Course entry is empty!");
-          return terms;
-        }
-
-        if (!terms.some(term => term.name === selectedTerm)) {
-          console.log(`Term "${selectedTerm}" does not exist in any of the terms list. Returning default terms`);
-          return terms;
-        }
-
-        const newTerms = terms.map(term => {
-          if(term.name === selectedTerm) {
-
+            // Create new course entry
             const new_course: Course = {
-              course_code: (data.new_course?.course_code) ? data.new_course.course_code : "",
-              course_title: (data.new_course?.course_title) ? data.new_course.course_title : "",
-              grade: (data.new_course?.grade) ? data.new_course.grade : 0.0,
-              unit: (data.new_course?.unit) ? data.new_course.unit : 0.0,
+              id: uuid(),
+              course_code: (data.course?.course_code) ? data.course.course_code : "",
+              course_title: (data.course?.course_title) ? data.course.course_title : "",
+              grade: (data.course?.grade) ? data.course.grade : 0.0,
+              unit: (data.course?.unit) ? data.course.unit : 0.0,
             };
 
             const courses = [...term.courses, new_course];
@@ -56,36 +52,21 @@ export default function Table() {
 
           return term;
         });
-        break;
 
       case Action.Modify:
-        if (selectedTerm === '') {
-          console.log("Emtpy selected term error. Returning default terms");
-          return terms;
-        }
-
-        if (data.new_course === null) {
-          console.log("Course entry is empty!");
-          return terms;
-        }
-
-        if (!terms.some(term => term.name === selectedTerm)) {
-          console.log(`Term "${selectedTerm}" does not exist in any of the terms list. Returning default terms`);
-          return terms;
-        }
-
-        const newTerms2 = terms.map(term => {
-          if(term.name === selectedTerm) {
+        return terms.map(term => {
+          if(term.name === selectedTermId) {
 
             const modified_course: Course = {
-              course_code: (data.new_course?.course_code) ? data.new_course.course_code : "",
-              course_title: (data.new_course?.course_title) ? data.new_course.course_title : "",
-              grade: (data.new_course?.grade) ? data.new_course.grade : 0.0,
-              unit: (data.new_course?.unit) ? data.new_course.unit : 0.0,
+              id: data.course.id,
+              course_code: data.course.course_code,
+              course_title: data.course.course_title,
+              grade: (data.course?.grade)? data.course.grade : 0.0,
+              unit: (data.course?.unit)? data.course.unit : 0.0,
             };
 
             const modified_courses = term.courses.map(course => {
-              if (course.course_code === modified_course.course_code) {
+              if (course.id === modified_course.id) {
                 return modified_course;
               }
 
@@ -99,45 +80,42 @@ export default function Table() {
           return term;
         });
 
-
-
-
-
-
-
+      default:
+        return terms;
     }
-
-
-    return terms;
   }
 
   function handleAddCourse(new_course: Course) {
     dispatch({
       action: Action.Add,
-      new_course: new_course,
-    })
+      course: new_course,
+    });
+  }
+
+  function handleModifyCourse(modified_course: Course) {
+    dispatch({
+      action: Action.Modify,
+      course: modified_course,
+    });
   }
 
 
-  function onDropdownChange(selected_term: string) {
-    setSelectedTerm(selected_term);
+  function onDropdownChange(selected_term_id: string) {
+    setSelectedTermId(selected_term_id);
   }
 
   function returnSelectedTerm(): Term {
-    const data: Term = Object.assign({}, terms.find(term => term.name === selectedTerm));
+    const data: Term = Object.assign({}, terms.find(term => term.id === selectedTermId));
 
-    if (data === undefined) {
-      return {
-        name: '',
-        courses: [],
-      };
-    }
+    if (data === undefined)
+      throw new Error("The term selected doesn't exist!");
 
-    if (terms.some(term => term.name === selectedTerm)) {
+    if (terms.some(term => term.id === selectedTermId))
       return data;
-    }
 
-    return terms[0];
+
+    // Else, return just the first term by default
+    return structuredClone(terms[0]);
   }
 
   return (

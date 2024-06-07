@@ -19,7 +19,7 @@ export default class InitializationService implements Service {
         return this.initializationService;
     }
 
-    initializeTerms(): Term[] {
+    public initializeTerms(): Term[] {
         const history_course: Course = {
             id: uuid(),
             course_code: "GERPHIS",

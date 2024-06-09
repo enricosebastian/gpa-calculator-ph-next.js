@@ -3,9 +3,9 @@
 import {v4 as uuid} from 'uuid';
 
 import DropdownMenuForTerms from "./_table_components/DropdownMenuForTerms";
-import RowTitles from "./_table_components/RowTitles";
-import RowInputs from "./_table_components/RowInputs";
-import RowResults from "./_table_components/RowResults";
+import HeaderTitlesRow from "./_table_components/HeaderTitlesRow";
+import CoursesRow from "./_table_components/CoursesRow";
+import GradesRow from "./_table_components/GradesRow";
 
 import InitializeData from "../_services/InitializationService";
 
@@ -122,13 +122,13 @@ export default function Table() {
       <table className="table-fixed">
         <thead>
           <DropdownMenuForTerms terms={terms} onDropdownChange={onDropdownChange}></DropdownMenuForTerms>
-          <RowTitles></RowTitles>
+          <HeaderTitlesRow></HeaderTitlesRow>
         </thead>
 
         <tbody>
-          <RowInputs term={returnSelectedTerm()} handleAddCourse={handleAddCourse}></RowInputs>
+          <CoursesRow term={returnSelectedTerm()} handleAddCourse={handleAddCourse}></CoursesRow>
           
-          <RowResults></RowResults>
+          <GradesRow></GradesRow>
         </tbody>
       </table>
   );

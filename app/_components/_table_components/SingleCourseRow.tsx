@@ -3,17 +3,17 @@ import { useState } from "react";
 
 
 interface Props {
-    course: Course | null;
+    course?: Course;
     handleAddCourse: Function;
 }
 
-export default function RowInput({course}: Props) {
+export default function SingleCourseRow({course}: Props) {
     const [courseCode, setCourseCode] = useState(course?.course_code);
     const [courseTitle, setCourseTitle] = useState(course?.course_title);
     const [grade, setGrade] = useState(course?.grade);
     const [unit, setUnit] = useState(course?.unit);
 
-    function handleOnChange(e) {
+    function handleOnChange(e: React.ChangeEvent<HTMLInputElement>) {
         if (e.target.id === "course_code") {
             setCourseCode(e.target.value);
             return;
@@ -25,15 +25,28 @@ export default function RowInput({course}: Props) {
         }
 
         if (e.target.id === "grade") {
-            setGrade(e.target.value);
+            let grade = parseInt(e.target.value);
+
+            if (grade < 0 || grade > 4) {
+                setGrade(0); 
+                return;
+            }
+
+            setGrade(grade);
             return;
         }
 
         if (e.target.id === "unit") {
-            setUnit(e.target.value);
+            let unit = parseInt(e.target.value);
+
+            if (unit < 0 || unit > 4) {
+                setGrade(0); 
+                return;
+            }
+
+            setUnit(unit);
             return;
         }
-        
     }
     
     return (

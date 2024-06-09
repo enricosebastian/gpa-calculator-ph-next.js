@@ -1,4 +1,4 @@
-export default function RowResults() {
+export default function GradesRow() {
 
     return (
         <>

@@ -1,4 +1,4 @@
-export default function RowTitles() {
+export default function HeaderTitlesRow() {
 
     return (
         <tr className="border-black border-solid border-[5px]">

@@ -1,95 +1,116 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client';
+
+import Table from '@/components/Table/Table';
+import starting_courses from '@/utils/CourseSeeder';
+import starting_terms from '@/utils/TermSeeder';
+
+import { useReducer, useState } from 'react';
+
+import courseReducer, { CourseReducerData, CourseReducerPayload } from '@/types/CourseReducer';
+import termReducer from '@/types/TermReducer';
+import Action from '@/types/Action';
 
 export default function Home() {
+  // Initialize the courses
+  const [courses, coursesDispatch] = useReducer(courseReducer, starting_courses);
+
+  // Initialize the terms
+  const [terms, termsDispatch] = useReducer(termReducer, starting_terms);
+  
+  // Make sure you initialize the selected term on page load
+  const [selectedTerm, setSelectedTerm] = useState<Term>(terms[0]);
+
+  const dropdown_items = terms.map(term => <option key={term.id} value={term.id}>{term.name}</option>) 
+
+  const handleSelectOnChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selected_term_id = e.target.value;
+
+    // Make sure the term ID is actually in the list of existing terms
+    if (!terms.some(term => term.id === selected_term_id)) {
+      throw Error('Term in the select dropdown does not exist!');
+    }
+
+    const selected_term = terms.find(term => term.id === selected_term_id);
+
+    if (selected_term === undefined) {
+      return;
+    }
+
+    setSelectedTerm(selected_term);
+  }
+
+  const handleModifyCourse = (modified_course: Course) => {
+    const data: CourseReducerData = {
+      course: modified_course,
+      selected_term: modified_course.term // The term they are assigned to
+    };
+
+    const payload: CourseReducerPayload = {
+      action: Action.MODIFY,
+      data: data,
+    };
+
+    coursesDispatch(payload);
+  }
+
+  const handleDeleteCourse = (deleted_course: Course) => {
+    const data: CourseReducerData = {
+      course: deleted_course,
+      selected_term: deleted_course.term // The term they are assigned to
+    };
+
+    const payload: CourseReducerPayload = {
+      action: Action.DELETE,
+      data: data,
+    };
+
+    coursesDispatch(payload);
+  }
+
+  const handleAddEmptyCourse = () => {
+    const empty_course: Course = {
+      id: crypto.randomUUID(),
+      name: '',
+      grade: '',
+      unit: '0.0',
+      code: '0.0',
+      term: selectedTerm
+    }
+
+    const data: CourseReducerData = {
+      course: empty_course,
+      selected_term: selectedTerm // The term currently active in UI
+    };
+
+    const payload: CourseReducerPayload = {
+      action: Action.ADD,
+      data: data,
+    };
+
+    coursesDispatch(payload);
+  }
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
+    <div>
+      <div>
+
+        <select onChange={(e) => handleSelectOnChange(e)}>
+          {dropdown_items}
+        </select>
+
+        <button>Add Term</button>
+        <button onClick={handleAddEmptyCourse}>Add Course</button>
+
+      </div>
+      
+      <div>
+        <input value={selectedTerm.name}></input>
       </div>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      <div>
+        <Table courses={courses.filter(course => course.term.id === selectedTerm.id)} handleAddCourse={handleAddEmptyCourse} handleModifyCourse={handleModifyCourse} handleDeleteCourse={handleDeleteCourse}/>
       </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+      
+    </div>
   );
 }

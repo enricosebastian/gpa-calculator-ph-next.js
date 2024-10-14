@@ -12,7 +12,7 @@ const termReducer: Reducer<Term[], TermReducerPayload> = (current_terms_data: Te
 
   if (payload.action === Action.ADD) {
     const new_term: Term = {
-      id: crypto.randomUUID(),
+      id: entered_term.id,
       name: entered_term.name,
     }
 

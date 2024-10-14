@@ -9,6 +9,7 @@ import { useReducer, useState } from 'react';
 import courseReducer, { CourseReducerData, CourseReducerPayload } from '@/types/CourseReducer';
 import termReducer, {TermReducerPayload} from '@/types/TermReducer';
 import Action from '@/types/Action';
+import { randomUUID } from 'crypto';
 
 export default function Home() {
   // Initialize the courses
@@ -107,15 +108,32 @@ export default function Home() {
     
   }
 
+  const handleAddTerm = () => {
+    const id: string = crypto.randomUUID();
+
+    const new_term: Term = {
+      id: id,
+      name: `term ${id}`,
+    };
+
+    const payload: TermReducerPayload = {
+      action: Action.ADD,
+      data: new_term,
+    };
+
+    termsDispatch(payload);
+    setSelectedTerm(new_term);
+  }
+
   return (
     <div>
       <div>
 
-        <select onChange={(e) => handleSelectOnChange(e)}>
+        <select onChange={(e) => handleSelectOnChange(e)} value={selectedTerm.id}>
           {dropdown_items}
         </select>
 
-        <button>Add Term</button>
+        <button onClick={handleAddTerm}>Add Term</button>
         <button onClick={handleAddEmptyCourse}>Add Course</button>
 
       </div>

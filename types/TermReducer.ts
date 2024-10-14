@@ -2,7 +2,7 @@ import { Reducer, useReducer } from "react"
 import Action from "./Action";
 import starting_terms from "@/utils/TermSeeder";
 
-interface TermReducerPayload {
+export interface TermReducerPayload {
     action: Action,
     data: Term
 }
@@ -25,7 +25,7 @@ const termReducer: Reducer<Term[], TermReducerPayload> = (current_terms_data: Te
       name: entered_term.name,
     }
 
-    return current_terms_data.map(course => course.id === modified_term.id? modified_term : course);
+    return current_terms_data.map(term => term.id === modified_term.id? modified_term : term);
   }
 
   if (payload.action === Action.DELETE) {

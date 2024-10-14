@@ -7,7 +7,7 @@ import starting_terms from '@/utils/TermSeeder';
 import { useReducer, useState } from 'react';
 
 import courseReducer, { CourseReducerData, CourseReducerPayload } from '@/types/CourseReducer';
-import termReducer from '@/types/TermReducer';
+import termReducer, {TermReducerPayload} from '@/types/TermReducer';
 import Action from '@/types/Action';
 
 export default function Home() {
@@ -90,6 +90,23 @@ export default function Home() {
     coursesDispatch(payload);
   }
 
+  const handleModifyTermName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    
+    const modified_term: Term = {
+      id: selectedTerm.id,
+      name: e.target.value
+    };
+
+    const payload: TermReducerPayload = {
+      action: Action.MODIFY,
+      data: modified_term,
+    };
+
+    termsDispatch(payload);
+    setSelectedTerm(modified_term);
+    
+  }
+
   return (
     <div>
       <div>
@@ -104,7 +121,7 @@ export default function Home() {
       </div>
       
       <div>
-        <input value={selectedTerm.name}></input>
+        <input onChange={e => handleModifyTermName(e)} value={selectedTerm.name}></input>
       </div>
 
       <div>

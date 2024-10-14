@@ -1,5 +1,5 @@
 const term_1: Term = {
-    id: '111111',
+    id: 'term_1',
     name: 'term 1',
 }
 

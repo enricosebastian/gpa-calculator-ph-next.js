@@ -1,6 +1,6 @@
 import { useTermContext } from "@/_context/TermContext";
 import { Term } from "@/_types/Term"
-import { ChangeEvent, useContext } from "react";
+import { ChangeEvent, useContext, useEffect } from "react";
 import { useMainContext } from "@/_context/MainContext";
 import {v4 as uuid} from "uuid"; 
 
@@ -29,16 +29,15 @@ export default function Toolbar() {
 
         const new_term: Term = {
             id: new_term_id,
-            name: new_term_id
+            name: `term ${new_term_id.substring(0,4)}`
         };
 
         addTerm(new_term);
-        setSelectedTerm(new_term);
     }
     
     return (
         <div>
-            <select onChange={e => handleSelectOnChange(e)}>{dropdown_values}</select>
+            <select onChange={e => handleSelectOnChange(e)} value={selectedTerm.id}>{dropdown_values}</select>
             <input value={selectedTerm.name} onChange={e => handleInputOnChange(e)}></input>
             <button onClick={handleAddNewTerm}>Add a term</button>
             <button>Delete this term</button>

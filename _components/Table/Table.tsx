@@ -1,14 +1,10 @@
+import { useCourseContext } from "@/_context/CourseContext";
+import { useMainContext } from "@/_context/MainContext";
 import { Course } from "@/_types/Course"
 
-interface TableProps {
-    courses: Course[],
-    handleModifyCourse: (modified_course: Course) => void,
-    handleDeleteCourse: (deleted_course: Course) => void,
-}
-
-
-export default function Table({courses, handleModifyCourse, handleDeleteCourse}: TableProps) {
-    const table_rows = courses.map(course => <TableRow key={course.id} course={course} handleModifyCourse={handleModifyCourse} handleDeleteCourse={handleDeleteCourse}/>)
+export default function Table() {
+    const {selectedCourses} = useMainContext();
+    const table_rows = selectedCourses.map(course => <TableRow key={course.id} course={course}/>)
     
     return (
         <>
@@ -34,11 +30,10 @@ export default function Table({courses, handleModifyCourse, handleDeleteCourse}:
 
 interface TableRowProps {
     course: Course,
-    handleModifyCourse: (modified_course: Course) => void,
-    handleDeleteCourse: (deleted_course: Course) => void,
 }
 
-function TableRow({course, handleModifyCourse, handleDeleteCourse}: TableRowProps) {
+function TableRow({course}: TableRowProps) {
+    const {modifyCourse, deleteCourse} = useCourseContext();
 
     const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (course === null)
@@ -53,7 +48,7 @@ function TableRow({course, handleModifyCourse, handleDeleteCourse}: TableRowProp
             code: course.code,
             unit: course.unit,
             grade: course.grade,
-            term: course.term,
+            term_id: course.term_id,
         }
 
         const input_value: string = e.target.value;
@@ -98,11 +93,11 @@ function TableRow({course, handleModifyCourse, handleDeleteCourse}: TableRowProp
                 break;
         }
 
-        handleModifyCourse(modified_course);
+        modifyCourse(modified_course);
     }
 
     const handleDelete = (deleted_course: Course) => {
-        handleDeleteCourse(deleted_course);
+        deleteCourse(deleted_course);
     }
 
     return (

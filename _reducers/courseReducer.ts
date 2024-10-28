@@ -17,7 +17,7 @@ export const courseReducer = (state: Course[], payload: CourseReducerPayload) =>
                 grade: entered_course.grade,
                 code: entered_course.code,
                 unit: entered_course.unit,
-                term: entered_course.term,
+                term_id: entered_course.term_id,
             }
             
             return [...state, added_course];
@@ -32,7 +32,7 @@ export const courseReducer = (state: Course[], payload: CourseReducerPayload) =>
                 grade: entered_course.grade,
                 code: entered_course.code,
                 unit: entered_course.unit,
-                term: entered_course.term,
+                term_id: entered_course.term_id,
             }
             
             return state.map(course => course.id === modified_course.id ? modified_course : course);

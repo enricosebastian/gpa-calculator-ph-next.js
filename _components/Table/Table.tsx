@@ -1,12 +1,13 @@
+import { Course } from "@/_types/Course"
+
 interface TableProps {
     courses: Course[],
-    handleAddCourse: () => void,
     handleModifyCourse: (modified_course: Course) => void,
     handleDeleteCourse: (deleted_course: Course) => void,
 }
 
 
-export default function Table({courses, handleAddCourse, handleModifyCourse, handleDeleteCourse}: TableProps) {
+export default function Table({courses, handleModifyCourse, handleDeleteCourse}: TableProps) {
     const table_rows = courses.map(course => <TableRow key={course.id} course={course} handleModifyCourse={handleModifyCourse} handleDeleteCourse={handleDeleteCourse}/>)
     
     return (

@@ -1,4 +1,5 @@
-import starting_terms from './TermSeeder'
+import initializeTerms from './initializeTerms'
+import { Course } from '@/_types/Course'
 
 const gerphis: Course = {
     id: '0',
@@ -6,7 +7,7 @@ const gerphis: Course = {
     code: 'GERPHIS',
     unit: '3.0',
     grade: '4.0',
-    term: starting_terms[0],
+    term_id: initializeTerms()[0].id,
 }
 
 const ccprog1: Course = {
@@ -15,7 +16,7 @@ const ccprog1: Course = {
     code: 'CCPROG1',
     unit: '3.0',
     grade: '4.0',
-    term: starting_terms[0],
+    term_id: initializeTerms()[0].id,
 }
 
 const ccprog2: Course = {
@@ -24,7 +25,7 @@ const ccprog2: Course = {
     code: 'CCPROG2',
     unit: '3.0',
     grade: '4.0',
-    term: starting_terms[1],
+    term_id: initializeTerms()[1].id,
 }
 
 const ccprog3: Course = {
@@ -33,7 +34,7 @@ const ccprog3: Course = {
     code: 'CCPROG3',
     unit: '3.0',
     grade: '4.0',
-    term: starting_terms[2],
+    term_id: initializeTerms()[2].id,
 }
 
 const geartap: Course = {
@@ -42,9 +43,11 @@ const geartap: Course = {
     code: 'GEARTAP',
     unit: '3.0',
     grade: '4.0',
-    term: starting_terms[2],
+    term_id: initializeTerms()[2].id,
 }
 
-const starting_courses: Course[] = [gerphis, ccprog1, ccprog2, ccprog3, geartap];
+const initializeCourses = (): Course[] => {
+    return [gerphis, ccprog1, ccprog2, ccprog3, geartap];
+};
 
-export default starting_courses;
+export default initializeCourses;

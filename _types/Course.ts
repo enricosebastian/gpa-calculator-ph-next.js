@@ -1,4 +1,6 @@
-interface Course {
+import { Term } from "./Term";
+
+export interface Course {
     id: string, // should be unique
     name: string,
     code: string,
@@ -7,5 +9,5 @@ interface Course {
     // This is to combat formating issues such as periods
     unit: string,
     grade: string,
-    term: Term,
+    term_id: string,
 }

@@ -1,3 +1,5 @@
+import { Term } from "@/_types/Term"
+
 const term_1: Term = {
     id: 'term_1',
     name: 'term 1',
@@ -74,7 +76,8 @@ const term_15: Term = {
     name: 'term 15',
 }
 
+const initializeTerms = (): Term[] => {
+    return [term_1, term_2, term_3, term_4, term_5, term_6, term_7, term_8, term_9, term_10, term_11, term_12, term_13, term_14, term_15];
+}
 
-const starting_terms = [term_1, term_2, term_3, term_4, term_5, term_6, term_7, term_8, term_9, term_10, term_11, term_12, term_13, term_14, term_15];
-
-export default starting_terms; 
+export default initializeTerms;

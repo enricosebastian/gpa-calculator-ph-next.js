@@ -1,4 +1,4 @@
-import React, { Dispatch, createContext, ReactNode, useContext, useReducer, useEffect, useState } from "react";
+import React, { Dispatch, createContext, ReactNode, useContext, useReducer, useEffect, useState, useRef } from "react";
 import { termReducer, TermReducerPayload } from "@/_reducers/termReducer";
 import { Term } from "@/_types/Term";
 import initializeTerms from "@/_utils/initializeTerms";
@@ -41,7 +41,6 @@ export const MainContextProvider = ({children}: {children: ReactNode}) => {
         
         setSelectedTerm(new_selected_term);
     }, [terms]);
-
 
     return (
         <MainContext.Provider value={{selectedTerm: selected_term, setSelectedTerm: setSelectedTerm, selectedCourses: selected_courses}}>

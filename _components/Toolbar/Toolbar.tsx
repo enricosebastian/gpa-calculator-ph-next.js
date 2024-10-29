@@ -40,7 +40,7 @@ export default function Toolbar() {
 
     const handleDeleteTerm = () => {
         const newSelectedTermIndex = terms.indexOf(selectedTerm);
-        
+
         if (newSelectedTermIndex === 0 && terms.length > 1) {
             setSelectedTerm(terms[1]);
         } else if (terms.length > 1) {
@@ -76,7 +76,7 @@ export default function Toolbar() {
             <select onChange={e => handleTermSelected(e)} value={selectedTerm.id}>{dropdown_values}</select>
             <input value={selectedTerm.name} onChange={e => handleTermNameChange(e)}></input>
             <button onClick={handleAddNewTerm}>Add a term</button>
-            <button onClick={handleDeleteTerm}>Delete this term</button>
+            <button onClick={() => {terms.length <= 1 ? null : handleDeleteTerm()}} disabled={terms.length <= 1}>Delete this term</button>
             <button onClick={handleAddNewCourse}>Add a course</button>
         </div>
     );

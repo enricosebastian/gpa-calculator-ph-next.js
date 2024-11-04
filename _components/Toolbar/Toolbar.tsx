@@ -24,7 +24,10 @@ export default function Toolbar() {
     };
 
     const handleTermNameChange = (e: ChangeEvent<HTMLInputElement>) => {
-        modifyTerm({...selectedTerm, name: e.target.value});
+        const modified_term = {...selectedTerm, name: e.target.value};
+
+        modifyTerm(modified_term);
+        setSelectedTerm(modified_term);
     };
 
     const handleAddNewTerm = () => {
@@ -35,7 +38,17 @@ export default function Toolbar() {
             name: `term ${new_term_id.substring(0,4)}`
         };
 
+        const new_course: Course = {
+            id: uuid(),
+            name: 'yeeter',
+            code: '',
+            grade: '',
+            unit: '',
+            term_id: new_term_id
+        };
+
         addTerm(new_term);
+        addCourse(new_course);
     };
 
     const handleDeleteTerm = () => {

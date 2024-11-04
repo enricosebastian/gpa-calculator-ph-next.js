@@ -12,7 +12,7 @@ export const courseReducer = (state: Course[], payload: CourseReducerPayload) =>
     switch (payload.action) {
         case Action.ADD:
             const added_course: Course = {
-                id: crypto.randomUUID(),
+                id: entered_course.id,
                 name: entered_course.name,
                 grade: entered_course.grade,
                 code: entered_course.code,

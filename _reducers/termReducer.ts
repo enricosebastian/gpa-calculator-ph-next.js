@@ -12,7 +12,7 @@ export const termReducer = (state: Term[], payload: TermReducerPayload) => {
     switch (payload.action) {
         case Action.ADD:
             const added_term: Term = {
-                id: crypto.randomUUID(),
+                id: entered_term.id,
                 name: entered_term.name,
             }
             

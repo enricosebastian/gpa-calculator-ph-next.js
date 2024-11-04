@@ -31,21 +31,21 @@ export const MainContextProvider = ({children}: {children: ReactNode}) => {
     const [selected_term, setSelectedTerm] = useState<Term>(terms[0]);
     const selected_courses = courses.filter(course => course.term_id === selected_term.id);
 
-    // Responsible for updating everything if we update the selected term
-    useEffect(() => {
-        const new_selected_term = terms.find(term => term.id === selected_term.id);
+    // // Responsible for updating everything if we update the selected term
+    // useEffect(() => {
+    //     const new_selected_term = terms.find(term => term.id === selected_term.id);
 
-        if (terms.length === 1) {
-            setSelectedTerm(terms[0]);
-        }
+    //     if (terms.length === 1) {
+    //         setSelectedTerm(terms[0]);
+    //     }
 
-        if (!new_selected_term) {
-            throw new Error('This term does not exist!');
-        }
+    //     if (!new_selected_term) {
+    //         throw new Error('This term does not exist!');
+    //     }
         
-        setSelectedTerm(new_selected_term);
+    //     setSelectedTerm(new_selected_term);
 
-    }, [terms]);
+    // }, [terms]);
 
     return (
         <MainContext.Provider value={{selectedTerm: selected_term, setSelectedTerm: setSelectedTerm, selectedCourses: selected_courses}}>

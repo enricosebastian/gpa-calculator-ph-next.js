@@ -40,7 +40,7 @@ export default function Toolbar() {
 
         const new_course: Course = {
             id: uuid(),
-            name: 'yeeter',
+            name: '',
             code: '',
             grade: '',
             unit: '',
@@ -49,6 +49,7 @@ export default function Toolbar() {
 
         addTerm(new_term);
         addCourse(new_course);
+        setSelectedTerm(new_term);
     };
 
     const handleDeleteTerm = () => {

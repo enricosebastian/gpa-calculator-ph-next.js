@@ -7,11 +7,16 @@ import { Course } from "@/_types/Course";
 import { useCourseContext } from "@/_context/CourseContext";
 
 export default function Toolbar() {
-    const {selectedCourses, selectedTerm, setSelectedTerm} = useMainContext();
+    const {selectedCourses, selectedTermId: selectedTermId, setSelectedTermId: setSelectedTermId} = useMainContext();
     const {terms, addTerm, modifyTerm, deleteTerm} = useTermContext();
     const {addCourse, deleteCourse} = useCourseContext();
 
     const dropdown_values = terms.map(term => <option key={term.id} value={term.id}>{term.name}</option>);
+    const selected_term = terms.find(term => term.id === selectedTermId);
+
+    if (!selected_term) {
+        throw new Error('Term does not exist!');
+    }
 
     const handleTermSelected = (e: ChangeEvent<HTMLSelectElement>) => {
         const new_selected_term = terms.find(term => term.id === e.target.value);
@@ -20,14 +25,13 @@ export default function Toolbar() {
             throw new Error('Term does not exist!');
         }
 
-        setSelectedTerm(new_selected_term);
+        setSelectedTermId(new_selected_term.id);
     };
 
     const handleTermNameChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const modified_term = {...selectedTerm, name: e.target.value};
+        const modified_term = {id: selectedTermId, name: e.target.value};
 
         modifyTerm(modified_term);
-        setSelectedTerm(modified_term);
     };
 
     const handleAddNewTerm = () => {
@@ -49,25 +53,29 @@ export default function Toolbar() {
 
         addTerm(new_term);
         addCourse(new_course);
-        setSelectedTerm(new_term);
+        setSelectedTermId(new_term_id);
     };
 
     const handleDeleteTerm = () => {
-        const newSelectedTermIndex = terms.indexOf(selectedTerm);
+        const selected_term = terms.find(term => term.id === selectedTermId);
+        console.log(selected_term);
 
-        if (newSelectedTermIndex === 0 && terms.length > 1) {
-            setSelectedTerm(terms[1]);
+        if (!selected_term) return;
+
+        const selected_term_index = terms.indexOf(selected_term);
+        console.log(`new selected term is ${selected_term_index}`);
+
+        if (selected_term_index <= 0 && terms.length > 1) {
+            setSelectedTermId(terms[1].id);
         } else if (terms.length > 1) {
-            setSelectedTerm(terms[newSelectedTermIndex - 1]);
+            setSelectedTermId(terms[selected_term_index - 1].id);
         }
-
-        deleteTerm(selectedTerm);
 
         selectedCourses.forEach(course => {
             deleteCourse(course);
         });
 
-        
+        deleteTerm(selected_term);
     };
 
     const handleAddNewCourse = () => {
@@ -79,16 +87,18 @@ export default function Toolbar() {
             code: '',
             grade: '',
             unit: '',
-            term_id: selectedTerm.id
+            term_id: selectedTermId
         };
         
         addCourse(new_course);
     };
+
+
     
     return (
         <div>
-            <select onChange={e => handleTermSelected(e)} value={selectedTerm.id}>{dropdown_values}</select>
-            <input value={selectedTerm.name} onChange={e => handleTermNameChange(e)}></input>
+            <select onChange={e => handleTermSelected(e)} value={selectedTermId}>{dropdown_values}</select>
+            <input value={selected_term.name} onChange={e => handleTermNameChange(e)}></input>
             <button onClick={handleAddNewTerm}>Add a term</button>
             <button onClick={() => {terms.length <= 1 ? null : handleDeleteTerm()}} disabled={terms.length <= 1}>Delete this term</button>
             <button onClick={handleAddNewCourse}>Add a course</button>

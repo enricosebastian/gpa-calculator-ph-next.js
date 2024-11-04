@@ -8,8 +8,8 @@ import { useTermContext } from "./TermContext";
 import { useCourseContext } from "./CourseContext";
 
 type MainContextProps = {
-    selectedTerm: Term,
-    setSelectedTerm: React.Dispatch<React.SetStateAction<Term>>,
+    selectedTermId: string,
+    setSelectedTermId: React.Dispatch<React.SetStateAction<string>>,
     selectedCourses: Course[]
 };
 
@@ -28,8 +28,8 @@ export const useMainContext = () => {
 export const MainContextProvider = ({children}: {children: ReactNode}) => {
     const {terms, addTerm, modifyTerm, deleteTerm} = useTermContext();
     const {courses, addCourse, modifyCourse, deleteCourse} = useCourseContext();
-    const [selected_term, setSelectedTerm] = useState<Term>(terms[0]);
-    const selected_courses = courses.filter(course => course.term_id === selected_term.id);
+    const [selected_term_id, setSelectedTermId] = useState<string>(terms[0].id);
+    const selected_courses = courses.filter(course => course.term_id === selected_term_id);
 
     // // Responsible for updating everything if we update the selected term
     // useEffect(() => {
@@ -48,7 +48,7 @@ export const MainContextProvider = ({children}: {children: ReactNode}) => {
     // }, [terms]);
 
     return (
-        <MainContext.Provider value={{selectedTerm: selected_term, setSelectedTerm: setSelectedTerm, selectedCourses: selected_courses}}>
+        <MainContext.Provider value={{selectedTermId: selected_term_id, setSelectedTermId: setSelectedTermId, selectedCourses: selected_courses}}>
             {children}
         </MainContext.Provider>
     );

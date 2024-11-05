@@ -22,6 +22,15 @@ export default function Table() {
                     {table_rows}
                 </tbody>
 
+                <tfoot>
+                    <tr>
+                        GPA: 
+                    </tr>
+                    <tr>
+                        CGPA: 
+                    </tr>
+                </tfoot>
+
                 
             </table>
         </>

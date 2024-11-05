@@ -92,8 +92,6 @@ export default function Toolbar() {
         
         addCourse(new_course);
     };
-
-
     
     return (
         <div>

@@ -4,7 +4,7 @@ export enum Action {
     MODIFY = 'MODIFY',
 }
 
-export enum Theme {
+export enum University {
     DLSU = 'DLSU',
     ADMU = 'ADMU',
     UST = 'UST',

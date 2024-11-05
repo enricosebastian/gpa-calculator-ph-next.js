@@ -30,6 +30,8 @@ export const MainContextProvider = ({children}: {children: ReactNode}) => {
     const {courses, addCourse, modifyCourse, deleteCourse} = useCourseContext();
     const [selected_term_id, setSelectedTermId] = useState<string>(terms[0].id);
     const selected_courses = courses.filter(course => course.term_id === selected_term_id);
+    const [gpa, setGpa] = useState<string>('0');
+    const [cgpa, setCgpa] = useState<string>('0');
 
     // // Responsible for updating everything if we update the selected term
     // useEffect(() => {

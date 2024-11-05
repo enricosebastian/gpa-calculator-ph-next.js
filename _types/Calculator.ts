@@ -3,8 +3,7 @@ import { Course } from "./Course";
 
 export interface Formula {
     university: University;
-    getGpa(courses: Course[]): string;
-    getCgpa(course: Course[]): string;
+    getScore(courses: Course[]): string;
 }
 
 
@@ -15,11 +14,7 @@ export class Calculator {
         this._formula = formula;
     }
 
-    getGpa(courses: Course[]) {
-        return this._formula.getGpa(courses);
-    }
-
-    getCgpa(courses: Course[]) {
-        return this._formula.getCgpa(courses);
+    getScore(courses: Course[]) {
+        return this._formula.getScore(courses);
     }
 }

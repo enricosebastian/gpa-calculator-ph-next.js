@@ -5,7 +5,7 @@ import { University } from "@/_types/Enums";
 export class DlsuFormula implements Formula {
     university: University = University.DLSU;
 
-    getGpa(courses: Course[]): string {
+    getScore(courses: Course[]): string {
         let sum_of_units: number = 0;
         let sum_of_gradeunits: number = 0;
         let gpa: number = 0;
@@ -18,12 +18,9 @@ export class DlsuFormula implements Formula {
             sum_of_gradeunits += grade*unit;
         });
 
-        gpa = sum_of_gradeunits/sum_of_units;
+        if (sum_of_units !== 0)
+            gpa = sum_of_gradeunits/sum_of_units;
+        
         return `${gpa.toFixed(4)}`;
     }
-
-    getCgpa(course: Course[]): string {
-        throw new Error("Method not implemented.");
-    }
-
 }

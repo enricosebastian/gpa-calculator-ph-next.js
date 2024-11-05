@@ -2,10 +2,12 @@ import { useCourseContext } from "@/_context/CourseContext";
 import { useMainContext } from "@/_context/MainContext";
 import { DlsuFormula } from "@/_formulas/DlsuFormula";
 import { Calculator } from "@/_types/Calculator";
-import { Course } from "@/_types/Course"
+import { Course } from "@/_types/Course";
 
 export default function Table() {
     const {selectedCourses} = useMainContext();
+    const {courses} = useCourseContext();
+
     const table_rows = selectedCourses.map(course => <TableRow key={course.id} course={course}/>)
     const my_formula: DlsuFormula = new DlsuFormula();
     const my_calculator: Calculator = new Calculator(my_formula);
@@ -28,10 +30,10 @@ export default function Table() {
 
                 <tfoot>
                     <tr>
-                        <td>GPA: {my_calculator.getGpa(selectedCourses)}</td>
+                        <td>GPA: {my_calculator.getScore(selectedCourses)}</td>
                     </tr>
                     <tr>
-                        <td>CGPA: </td>
+                        <td>CGPA: {my_calculator.getScore(courses)}</td>
                     </tr>
                 </tfoot>
 

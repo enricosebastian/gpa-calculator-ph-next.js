@@ -11,16 +11,8 @@ export class DlsuFormula implements Formula {
         let gpa: number = 0;
 
         courses.forEach(course => {
-            if (course.grade.trim() === '') {
-                course.grade = '0';
-            }
-
-            if (course.unit.trim() === '') {
-                course.unit = '0';
-            }
-
-            const grade: number = Number(course.grade);
-            const unit: number = Number(course.unit);
+            const grade: number = course.grade.trim() === '' ? 0 : Number(course.grade);
+            const unit: number = course.unit.trim() === '' ? 0 : Number(course.unit);
 
             sum_of_units += unit;
             sum_of_gradeunits += grade*unit;
@@ -29,7 +21,7 @@ export class DlsuFormula implements Formula {
         gpa = sum_of_gradeunits/sum_of_units;
         return `${gpa.toFixed(4)}`;
     }
-    
+
     getCgpa(course: Course[]): string {
         throw new Error("Method not implemented.");
     }

@@ -5,6 +5,7 @@ import { useMainContext } from "@/_context/MainContext";
 import {v4 as uuid} from "uuid"; 
 import { Course } from "@/_types/Course";
 import { useCourseContext } from "@/_context/CourseContext";
+import { read, writeFileXLSX } from "xlsx";
 
 export default function Toolbar() {
     const {selectedCourses, selectedTermId: selectedTermId, setSelectedTermId: setSelectedTermId} = useMainContext();
@@ -92,6 +93,23 @@ export default function Toolbar() {
         
         addCourse(new_course);
     };
+
+    const handleFileUpload = () => {
+        const file_uploader = document.querySelector<HTMLInputElement>('#excel--file--uploader');
+        if (file_uploader === null)
+            return;
+
+        console.log(file_uploader);
+        console.log(file_uploader.id);
+
+        if (file_uploader.files === null)
+            return;
+
+        if (file_uploader.files.length > 1)
+            return;
+
+        const file = file_uploader.files[0];
+    }
     
     return (
         <div>
@@ -100,6 +118,7 @@ export default function Toolbar() {
             <button onClick={handleAddNewTerm}>Add a term</button>
             <button onClick={() => {terms.length <= 1 ? null : handleDeleteTerm()}} disabled={terms.length <= 1}>Delete this term</button>
             <button onClick={handleAddNewCourse}>Add a course</button>
+            <input id='excel--file--uploader' type='file' onChange={handleFileUpload}></input>
         </div>
     );
 }

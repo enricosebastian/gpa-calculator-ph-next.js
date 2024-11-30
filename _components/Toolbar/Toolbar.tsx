@@ -109,7 +109,6 @@ export default function Toolbar() {
         const file = file_uploader.files[0];
         const excel_sheet: ExcelSheet = new ExcelSheet();
         await excel_sheet.initialize(file);
-        excel_sheet.display();
     }
     
     return (

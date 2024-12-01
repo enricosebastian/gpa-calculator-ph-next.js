@@ -129,7 +129,7 @@ export default function Toolbar() {
 
         if (new_terms.length > 0) {
             setSelectedTermId(new_terms[0].id);
-        }        
+        }
     }
     
     return (

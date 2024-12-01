@@ -136,7 +136,7 @@ export class ExcelSheet {
         this._workbook = null;
     }
 
-    public getTermAndCourses(): [Term[], Course[]] {
+    public getTermsAndCourses(): [Term[], Course[]] {
         if (this._workbook === null) {
             throw new Error('Trying to get terms and courses, but workbook is null. Please initialize first');
         }

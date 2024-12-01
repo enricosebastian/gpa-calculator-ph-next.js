@@ -19,18 +19,6 @@ export class ExcelSheet {
         if (this._workbook === null) {
             throw new Error('Workbook is still null or undefined even after initialization. Try uploading a different file');
         }
-
-        const workbook = this._workbook;
-
-        if(!this.workBookIsValidated(workbook)) {
-            throw new Error('Workbook validation failed. Try a different file');
-        }
-        
-        const terms: Term[] = this.convertSheetsToTerms(workbook);
-        const courses: Course[] = this.convertSheetsToCourses(workbook, terms);
-
-        console.log(terms);
-        console.log(courses);
     }
 
     private workBookIsValidated(workbook: XLSX.WorkBook): boolean {
@@ -148,15 +136,20 @@ export class ExcelSheet {
         this._workbook = null;
     }
 
-    public get(): WorkBook {
+    public getTermAndCourses(): [Term[], Course[]] {
         if (this._workbook === null) {
-            throw new Error('Workbook does not exist');
+            throw new Error('Trying to get terms and courses, but workbook is null. Please initialize first');
         }
 
-        return this._workbook;
-    }
+        const workbook = this._workbook;
 
-    public display() {
-        console.log(this._workbook);
+        if(!this.workBookIsValidated(workbook)) {
+            throw new Error('Workbook validation failed. Try a different file');
+        }
+        
+        const terms: Term[] = this.convertSheetsToTerms(workbook);
+        const courses: Course[] = this.convertSheetsToCourses(workbook, terms);
+
+        return [terms, courses];
     }
 }

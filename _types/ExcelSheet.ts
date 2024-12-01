@@ -40,6 +40,21 @@ export class ExcelSheet {
         return true;
     }
 
+    private convertSheetsToTerms(workbook: XLSX.WorkBook): Term[] {
+        const terms: Term[] = [];
+
+        workbook.SheetNames.forEach((sheet_name: string) => {
+            const term: Term = {
+                id: uuid(),
+                name: sheet_name
+            };
+
+            terms.push(term);
+        });
+
+        return terms;
+    }
+
     private convertSheetsToCourses(workbook: XLSX.WorkBook, terms: Term[]): Course[] {
         const courses: Course[] = [];
 
@@ -85,21 +100,6 @@ export class ExcelSheet {
         });
 
         return courses;
-    }
-
-    private convertSheetsToTerms(workbook: XLSX.WorkBook): Term[] {
-        const terms: Term[] = [];
-
-        workbook.SheetNames.forEach((sheet_name: string) => {
-            const term: Term = {
-                id: uuid(),
-                name: sheet_name
-            };
-
-            terms.push(term);
-        });
-
-        return terms;
     }
 
     private async readAndValidateFile(file: Blob): Promise<WorkBook> {

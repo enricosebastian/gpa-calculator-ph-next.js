@@ -109,6 +109,9 @@ export default function Toolbar() {
         const file = file_uploader.files[0];
         const excel_sheet: ExcelSheet = new ExcelSheet();
         await excel_sheet.initialize(file);
+        const [new_terms, new_courses] = excel_sheet.getTermsAndCourses();
+        console.log(new_terms);
+        console.log(new_courses);
     }
     
     return (

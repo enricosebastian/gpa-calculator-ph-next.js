@@ -11,8 +11,8 @@ export class DlsuFormula implements Formula {
         let gpa: number = 0;
 
         courses.forEach(course => {
-            const grade: number = course.grade.trim() === '' ? 0 : Number(course.grade);
-            const unit: number = course.unit.trim() === '' ? 0 : Number(course.unit);
+            const grade: number = `${course.grade}`.trim() === '' ? 0 : Number(course.grade);
+            const unit: number = `${course.unit}`.trim() === '' ? 0 : Number(course.unit);
 
             sum_of_units += unit;
             sum_of_gradeunits += grade*unit;

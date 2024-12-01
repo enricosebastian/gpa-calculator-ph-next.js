@@ -11,7 +11,7 @@ import { ExcelSheet } from "@/_types/ExcelSheet";
 export default function Toolbar() {
     const {selectedCourses, selectedTermId: selectedTermId, setSelectedTermId: setSelectedTermId} = useMainContext();
     const {terms, addTerm, modifyTerm, deleteTerm} = useTermContext();
-    const {addCourse, deleteCourse} = useCourseContext();
+    const {courses, addCourse, deleteCourse} = useCourseContext();
 
     const dropdown_values = terms.map(term => <option key={term.id} value={term.id}>{term.name}</option>);
     const selected_term = terms.find(term => term.id === selectedTermId);
@@ -110,8 +110,26 @@ export default function Toolbar() {
         const excel_sheet: ExcelSheet = new ExcelSheet();
         await excel_sheet.initialize(file);
         const [new_terms, new_courses] = excel_sheet.getTermsAndCourses();
-        console.log(new_terms);
-        console.log(new_courses);
+
+        courses.forEach(course => {
+            deleteCourse(course);
+        });
+
+        terms.forEach(term => {
+            deleteTerm(term);
+        });
+
+        new_terms.forEach(term => {
+            addTerm(term);
+        });
+
+        new_courses.forEach(course => {
+            addCourse(course);
+        });
+
+        if (new_terms.length > 0) {
+            setSelectedTermId(new_terms[0].id);
+        }        
     }
     
     return (

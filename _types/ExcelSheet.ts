@@ -22,19 +22,27 @@ export class ExcelSheet {
     }
 
     private workBookIsValidated(workbook: XLSX.WorkBook): boolean {
+        let hasOneValidSheet: boolean = false;
+
         workbook.SheetNames.forEach((sheet_name: string) => {
             const sheet = workbook.Sheets[sheet_name];
             const column_headers = XLSX.utils.sheet_to_json(sheet, {header: 1})[0] as string[];
 
+            if (column_headers === null || column_headers === undefined) {
+                return;
+            }
+
             if (column_headers.length < 4 || column_headers.length > 4) {
-                throw new Error(`You are missing a column! Check if you have four columns (course code, course name, grade, unit) for sheet "${sheet_name}"`);
+                return;
             }
 
             const column_headers_lowercase = column_headers.map(column_header => column_header.toLowerCase());
 
             if (!column_headers_lowercase.includes('course code') || !column_headers_lowercase.includes('grade') || !column_headers_lowercase.includes('unit') || !column_headers_lowercase.includes('course name'))  {
-                throw new Error(`You are missing a header! You need "course code", "grade", "unit", and "course name" as header names in your sheets. They don't need to be in any specific order, but you are missing one in sheet ${sheet_name}`);
-            }            
+                return;
+            }   
+            
+            hasOneValidSheet = true;
         });
 
         return true;
@@ -68,6 +76,10 @@ export class ExcelSheet {
             const sheet = workbook.Sheets[sheet_name];
             const column_headers = XLSX.utils.sheet_to_json(sheet, {header: 1})[0] as string[];
 
+            if (column_headers === null || column_headers === undefined) {
+                return;
+            }
+            
             const new_header_names = column_headers.map(header => {
                 switch (header.toLowerCase()) {
                     case 'course code':

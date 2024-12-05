@@ -131,6 +131,10 @@ export default function Toolbar() {
             setSelectedTermId(new_terms[0].id);
         }
     }
+
+    const handleExportData = async () => {
+        ExcelSheet.export(terms, courses);
+    }
     
     return (
         <div>
@@ -139,6 +143,7 @@ export default function Toolbar() {
             <button onClick={handleAddNewTerm}>Add a term</button>
             <button onClick={() => {terms.length <= 1 ? null : handleDeleteTerm()}} disabled={terms.length <= 1}>Delete this term</button>
             <button onClick={handleAddNewCourse}>Add a course</button>
+            <button onClick={handleExportData}>Export data</button>
             <input id='excel--file--uploader' type='file' accept='.xls,.xlsx' onChange={handleFileUpload}></input>
         </div>
     );

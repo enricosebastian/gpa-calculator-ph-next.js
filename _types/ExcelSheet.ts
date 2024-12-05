@@ -152,4 +152,27 @@ export class ExcelSheet {
 
         return [terms, courses];
     }
+
+    public static export(terms: Term[], courses: Course[]) {
+
+        const workbook = XLSX.utils.book_new();
+
+        terms.forEach(term => {
+
+            const courses_in_the_term = courses.filter(course => course.term_id === term.id);
+
+            const rows = courses_in_the_term.map(course => ({
+                    'course code': course.code,
+                    'course name': course.name,
+                    'unit': course.unit,
+                    'grade': course.grade,
+            }));
+
+            const worksheet = XLSX.utils.json_to_sheet(rows);
+            
+            XLSX.utils.book_append_sheet(workbook, worksheet, term.name);
+        });
+        
+        XLSX.writeFile(workbook, "gpa-results.xlsx", { compression: true });
+    }
 }

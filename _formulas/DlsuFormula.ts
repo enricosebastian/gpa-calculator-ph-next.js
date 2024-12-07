@@ -23,4 +23,38 @@ export class DlsuFormula implements Formula {
         
         return `${gpa.toFixed(4)}`;
     }
+
+    // For dean's lister status
+    getTermStanding(courses: Course[]): string {
+        const gpa = Number.parseFloat(this.getScore(courses));
+
+        let message = '';
+
+        if (gpa >= 3.4) {
+            message = 'First Dean\'s lister';
+        } else if (gpa >= 3.0) {
+            message = 'Second Dean\'s lister';
+        }
+
+        return message;
+    }
+
+    // For Latin honors
+    getOverallStanding(courses: Course[]): string {
+        const cgpa = Number.parseFloat(this.getScore(courses));
+
+        let message = '';
+
+        if (cgpa >= 3.8) {
+            message = 'Summa Cum Luade';
+        } else if (cgpa >= 3.6) {
+            message = 'Magna Cum Laude';
+        } else if (cgpa >= 3.4) {
+            message = 'Cum Laude';
+        } else if (cgpa >= 3.2) {
+            message = 'Honorable Mention';
+        }
+
+        return message;
+    }
 }

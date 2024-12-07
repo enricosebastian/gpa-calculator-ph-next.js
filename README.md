@@ -22,6 +22,9 @@ Essentially what I wanted to do was a sort of save/import/export type of deal. E
 - Sheets.js (for Excel import/export)
 - UUID
 
+# Todo
+- Currently low-effort and no styling. Will add some soon using Sass and React.js
+
 # Universities supported (as of now. Please message me if you want me to add more formulas)
 - DLSU
 

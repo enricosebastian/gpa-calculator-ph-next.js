@@ -28,6 +28,6 @@ Essentially what I wanted to do was a sort of save/import/export type of deal. E
 - Add unit testing
 - Improve error handling for Sheet.js
 
-# Universities supported (as of now. Please message me if you want me to add more formulas)
+# Universities supported (as of now. Please message me if you more schools to be supported)
 - DLSU
 

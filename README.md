@@ -1,36 +1,25 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a GPA calculator I made for my girlfriend. She kept bugging me about calculating her CGPA cause she's grade conscious, plus she wanted to know whether she was cum laude or not. Decided to publicize it in case anyone else wants to experiment or predict their GPA
 
-## Getting Started
+# No DB necessary
+Essentially what I wanted to do was a sort of save/import/export type of deal. Every user can simply export the results of the GPA calculator via an Excel sheet. Conversely, if you have an Excel sheet that supports the CGPA calculator's format, you can just use the import feature to do so. All your courses will be imported directly!
 
-First, run the development server:
+# How to run locally
+- Clone this repository
+- Remember the directory of the cloned repo
+- `cd` to this repo's local version and run `npm install` to install all dependencies in your local environment
+- Run `npm run dev`
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+# How to run in Vercel
+- Fork the branch
+- Run (no setup needed)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Libraries/frameworks used
+- React.js and Next.js
+- TypeScript (cause numbers and calculations)
+- Sass (for styling)
+- Sheets.js (for Excel import/export)
+- UUID
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# Universities supported (as of now. Please message me if you want me to add more formulas)
+- DLSU
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

@@ -7,6 +7,7 @@ import { Course } from "@/_types/Course";
 import { useCourseContext } from "@/_context/CourseContext";
 import { read, writeFileXLSX } from "xlsx";
 import { ExcelSheet } from "@/_types/ExcelSheet";
+import { University } from "@/_types/Enums";
 
 export default function Toolbar() {
     const {selectedCourses, selectedTermId: selectedTermId, setSelectedTermId: setSelectedTermId} = useMainContext();
@@ -140,6 +141,10 @@ export default function Toolbar() {
     const handleExportData = async () => {
         ExcelSheet.export(terms, courses);
     }
+
+    const handleStyleChange = (e: ChangeEvent<HTMLSelectElement>) => {
+        console.log(e);
+    }
     
     return (
         <div>
@@ -149,6 +154,10 @@ export default function Toolbar() {
             <button onClick={() => {terms.length <= 1 ? null : handleDeleteTerm()}} disabled={terms.length <= 1}>Delete this term</button>
             <button onClick={handleAddNewCourse}>Add a course</button>
             <button onClick={handleExportData}>Export data</button>
+            <select onChange={e => handleStyleChange(e)}>
+                <option value={University.DLSU}>dlsu</option>
+                <option value={University.UST}>ust</option>
+            </select>
             <input id='excel--file--uploader' type='file' accept='.xls,.xlsx' onChange={handleFileUpload}></input>
         </div>
     );

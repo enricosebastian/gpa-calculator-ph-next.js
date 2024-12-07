@@ -5,6 +5,7 @@ export enum Action {
 }
 
 export enum University {
+    NONE = '',
     DLSU = 'DLSU',
     ADMU = 'ADMU',
     UST = 'UST',

@@ -143,7 +143,8 @@ export default function Toolbar() {
     }
 
     const handleStyleChange = (e: ChangeEvent<HTMLSelectElement>) => {
-        console.log(e);
+        const style: University = e.target.value as University;
+        console.log(style);
     }
     
     return (

@@ -108,28 +108,33 @@ export default function Toolbar() {
 
         const file = file_uploader.files[0];
         const excel_sheet: ExcelSheet = new ExcelSheet();
-        await excel_sheet.initialize(file);
-        const [new_terms, new_courses] = excel_sheet.getTermsAndCourses();
 
-        courses.forEach(course => {
-            deleteCourse(course);
-        });
+        excel_sheet.initialize(file).then((data) => {
+            const [new_terms, new_courses] = excel_sheet.getTermsAndCourses();
 
-        terms.forEach(term => {
-            deleteTerm(term);
-        });
+            courses.forEach(course => {
+                deleteCourse(course);
+            });
 
-        new_terms.forEach(term => {
-            addTerm(term);
-        });
+            terms.forEach(term => {
+                deleteTerm(term);
+            });
 
-        new_courses.forEach(course => {
-            addCourse(course);
-        });
+            new_terms.forEach(term => {
+                addTerm(term);
+            });
 
-        if (new_terms.length > 0) {
-            setSelectedTermId(new_terms[0].id);
-        }
+            new_courses.forEach(course => {
+                addCourse(course);
+            });
+
+            if (new_terms.length > 0) {
+                setSelectedTermId(new_terms[0].id);
+            }
+        }).catch((error) => {
+            alert(error);
+            return;
+        })
     }
 
     const handleExportData = async () => {

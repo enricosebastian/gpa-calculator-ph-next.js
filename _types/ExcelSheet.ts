@@ -45,7 +45,7 @@ export class ExcelSheet {
             hasOneValidSheet = true;
         });
 
-        return true;
+        return hasOneValidSheet;
     }
 
     private convertSheetsToTerms(workbook: XLSX.WorkBook): Term[] {
@@ -156,7 +156,7 @@ export class ExcelSheet {
         const workbook = this._workbook;
 
         if(!this.workBookIsValidated(workbook)) {
-            throw new Error('Workbook validation failed. Try a different file');
+            throw new Error('Uploaded excel sheet does not have proper formatting. Check the file and reupload again.');
         }
         
         const terms: Term[] = this.convertSheetsToTerms(workbook);

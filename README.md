@@ -24,6 +24,7 @@ Essentially what I wanted to do was a sort of save/import/export type of deal. E
 
 # Todo
 - Currently low-effort and no styling. Will add some soon using Sass and React.js
+- Add more universities (need to read their handbooks lmao)
 
 # Universities supported (as of now. Please message me if you want me to add more formulas)
 - DLSU

@@ -30,10 +30,10 @@ export default function Table() {
 
                 <tfoot>
                     <tr>
-                        <td>GPA: {my_calculator.getScore(selectedCourses)}</td>
+                        <td>GPA: {my_calculator.getScore(selectedCourses)} {my_calculator.getTermStanding(selectedCourses) === '' ? '' : `(${my_calculator.getTermStanding(selectedCourses)})`}</td>
                     </tr>
                     <tr>
-                        <td>CGPA: {my_calculator.getScore(courses)}</td>
+                        <td>CGPA: {my_calculator.getScore(courses)} {my_calculator.getOverallStanding(courses) === '' ? '' : `(${my_calculator.getOverallStanding(courses)})`}</td>
                     </tr>
                 </tfoot>
 

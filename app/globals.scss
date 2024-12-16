@@ -1,13 +1,13 @@
 html, body {
     margin: 0px;
     padding: 0px;
+    background-color: green;
 }
 
-table, th, tr, td {
-    border: 0.15rem solid;
-    border-collapse: collapse;
+.press-start-2p {
+    font-family: var(--press-start-2p);
 }
 
-input {
-    border: 0px;
+.vt323 {
+    font-family: var(--vt323);
 }

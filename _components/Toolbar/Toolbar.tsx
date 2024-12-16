@@ -150,7 +150,7 @@ export default function Toolbar() {
     return (
         <div>
             <select onChange={e => handleTermSelected(e)} value={selectedTermId}>{dropdown_values}</select>
-            <input value={selected_term.name} onChange={e => handleTermNameChange(e)}></input>
+            <input  value={selected_term.name} onChange={e => handleTermNameChange(e)}></input>
             <button onClick={handleAddNewTerm}>Add a term</button>
             <button onClick={() => {terms.length <= 1 ? null : handleDeleteTerm()}} disabled={terms.length <= 1}>Delete this term</button>
             <button onClick={handleAddNewCourse}>Add a course</button>

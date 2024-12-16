@@ -13,14 +13,9 @@ export default function Home() {
     <CourseContextProvider>
       <TermContextProvider>
         <MainContextProvider>
-          <div className="main--container">
-            <div className="nes-container with-title is-centered press-start-2p">
-              <p className="title">PH UNIVERSITY GPU ESTIMATOR</p>
-
-              <div className="main--contents">
-                <Sidebar/>
-                <RetroTable/>
-              </div>
+          <div className="main--header">DLSU GPU CALCULATOR</div>
+          <div className="main--viewport">
+            <div className="main--content">
               
             </div>
           </div>

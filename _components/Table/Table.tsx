@@ -13,32 +13,33 @@ export default function Table() {
     const my_calculator: Calculator = new Calculator(my_formula);
 
     return (
-        <div className="nes-table-responsive vt323">
-            <table className="nes-table is-bordered is-centered">
+        <>
+            <table className='table-fixed'>
                 <thead>
-                <tr>
-                    <th>Table.is-bordered</th>
-                    <th>Table.is-centered</th>
-                    <th>Table.is-centered</th>
-                    <th>Table.is-centered</th>
-                </tr>
+                    <tr>
+                        <th>course</th>
+                        <th>course code</th>
+                        <th>grade</th>
+                        <th>unit</th>
+                    </tr>
                 </thead>
+
                 <tbody>
-                <tr>
-                    <td>Thou hast had a good morning</td>
-                    <td>Thou hast had a good afternoon</td>
-                    <td>Thou hast had a good evening</td>
-                    <td>Thou hast had a good night</td>
-                </tr>
-                <tr>
-                    <td>Thou hast had a good morning</td>
-                    <td>Thou hast had a good afternoon</td>
-                    <td>Thou hast had a good evening</td>
-                    <td>Thou hast had a good night</td>
-                </tr>
+                    {table_rows}
                 </tbody>
+
+                <tfoot>
+                    <tr>
+                        <td>GPA: {my_calculator.getScore(selectedCourses)} {my_calculator.getTermStanding(selectedCourses) === '' ? '' : `(${my_calculator.getTermStanding(selectedCourses)})`}</td>
+                    </tr>
+                    <tr>
+                        <td>CGPA: {my_calculator.getScore(courses)} {my_calculator.getOverallStanding(courses) === '' ? '' : `(${my_calculator.getOverallStanding(courses)})`}</td>
+                    </tr>
+                </tfoot>
+
+                
             </table>
-        </div>
+        </>
     );
 }
 

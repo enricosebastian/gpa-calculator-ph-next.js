@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.scss";
-import "../node_modules/nes.css/css/nes.css";
 
 import { Press_Start_2P } from "next/font/google";
 import { VT323 } from "next/font/google";

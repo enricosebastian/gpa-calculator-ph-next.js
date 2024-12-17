@@ -1,5 +1,5 @@
 export default function RetroTable() {
     return (
-        <div>table</div>
+        <div className="retrotable--container">table</div>
     );
 }

@@ -13,10 +13,11 @@ export default function Home() {
     <CourseContextProvider>
       <TermContextProvider>
         <MainContextProvider>
-          <div className="main--header">DLSU GPU CALCULATOR</div>
+          <div className="main--header">PH UNIVERSITY GPA ESTIMATOR</div>
           <div className="main--viewport">
             <div className="main--content">
-              
+              <Sidebar/>
+              <RetroTable/>
             </div>
           </div>
         </MainContextProvider>

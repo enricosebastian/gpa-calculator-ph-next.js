@@ -3,8 +3,18 @@
     border: 5px solid;
     border-collapse: collapse;
 
+    // Makes sure the size is fixed and does not change based on input
+    table-layout: fixed; 
+
+    max-width: 50%;
+
     th, td {
         border: 5px solid;
+    }
+
+    th {
+        padding-left: 10px;
+        padding-right: 10px;
     }
     
 }

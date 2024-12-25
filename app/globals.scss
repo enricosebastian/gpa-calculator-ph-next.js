@@ -112,6 +112,8 @@ body {
 .retrotable--container {
     padding: 25px;
     padding-top: 75px;
+
+    background-color: blue;
 }
 
 .retrotable--content {
@@ -143,5 +145,9 @@ body {
 }
 
 .retrotable--table--container {
-
+    background-color: yellow;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
 }

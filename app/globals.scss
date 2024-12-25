@@ -120,12 +120,15 @@ body {
     width: 100%;
 }
 
-.retrotable--name--container {
+.retrotable--term--name--container {
     background-color: green;
 
     display: flex;
     align-items: center;
     justify-content: center;
+
+    padding-top: 25px;
+    padding-bottom: 25px;
 }
 
 .retro--input {

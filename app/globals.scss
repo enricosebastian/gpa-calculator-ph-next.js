@@ -71,38 +71,6 @@ body {
     grid-template-rows: 1fr 1fr;   /* Two rows: top and bottom */
 }
 
-.sidebar--container {
-    padding: 25px;
-}
-
-.sidebar--container--1 {
-    grid-row: 1 / 2; /* Top row */
-    grid-column: 1 / 2; /* First column */
-    background-color: lightblue;
-
-    border-style: solid;
-    border-width: 0px 5px 2.5px 0px;
-    border-color: black;    
-
-    display: flex;
-}
-
-.sidebar--container--2 {
-    grid-row: 2 / 3; /* Bottom row */
-    grid-column: 1 / 2; /* First column */
-    background-color: lightgreen;
-
-    border-style: solid;
-    border-width: 2.5px 5px 0px 0px;
-    border-color: black;   
-}
-
-.sidebar--content {
-    background-color: yellow;
-    width: 100%;
-    height: 100%;
-}
-
 .retrotable--container {
     grid-row: 1 / 3; /* Spanning top and bottom rows */
     grid-column: 2 / 3; /* Second column */

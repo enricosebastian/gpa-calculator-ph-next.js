@@ -35,7 +35,7 @@ function Table() {
             <thead>
                 <tr>
                     <th className={styles.long_column}>course</th>
-                    <th>course code</th>
+                    <th className={styles.medium_column}>course code</th>
                     <th>grade</th>
                     <th>unit</th>
                     <th className={styles.hidden_column}></th>

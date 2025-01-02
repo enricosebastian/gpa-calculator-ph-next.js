@@ -127,7 +127,7 @@ function TableRow({course}: TableRowProps) {
             <td className={styles.medium_column}><input type='text' id='course_code' name='' onChange={(e) => handleOnChange(e)} value={course.code}/></td>
             <td><input type='text' id='course_grade' name='' onChange={(e) => handleOnChange(e)} value={course.grade}/></td>
             <td><input type='text' id='course_unit' name='' onChange={(e) => handleOnChange(e)} value={course.unit}/></td>
-            <td className={styles.hidden_column}><button onClick={() => handleDelete(course)}>x</button></td>
+            <td className={styles.hidden_column}><button className={styles.delete_course_button} onClick={() => handleDelete(course)}>x</button></td>
         </tr>
     );
 }

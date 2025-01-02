@@ -44,5 +44,13 @@
     .medium_column {
         min-width: 200px;
     }
+
+    .delete_course_button {
+        opacity: 0;
+    }
+
+    .delete_course_button:hover {
+        opacity: 100%;
+    }
     
 }

@@ -4,13 +4,20 @@ import { Course } from '@/_types/Course';
 import { useMainContext } from '@/_context/MainContext';
 import { DlsuFormula } from '@/_formulas/DlsuFormula';
 import { Calculator } from "@/_types/Calculator";
+import { useTermContext } from '@/_context/TermContext';
+import { Term } from '@/_types/Term';
 
 export default function RetroTable() {
+    const {selectedTermId} = useMainContext();
+    const {terms} = useTermContext();
+
+    const selectedTerm = terms.find(term => term.id === selectedTermId);
+
     return (
         <div className="retrotable--container">
             <div className="retrotable--content">
                 <div className="retrotable--term--name--container">
-                    <input className="term--name--input" type="text"></input>
+                    <input className="term--name--input" type="text" value={selectedTerm?.name}></input>
                 </div>
                 <div className="retrotable--table--container">
                     <Table/>

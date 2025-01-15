@@ -2,13 +2,15 @@ import { useMainContext } from '@/_context/MainContext';
 import styles from './Sidebar.module.scss';
 import { useTermContext } from '@/_context/TermContext';
 import { Tenali_Ramakrishna } from 'next/font/google';
+import { useCourseContext } from '@/_context/CourseContext';
 
 export default function Sidebar() {
     const colleges = ['DLSU', 'AdMU', 'UST'];
     const college_select_fields = colleges.map(college => <option key={college} value={college}>{college}</option>)
 
-    const {selectedTermId} = useMainContext();
-    const {terms} = useTermContext();
+    const {selectedCourses, selectedTermId: selectedTermId, setSelectedTermId: setSelectedTermId} = useMainContext();
+    const {terms, addTerm, modifyTerm, deleteTerm} = useTermContext();
+    const {courses, addCourse, deleteCourse} = useCourseContext();
     
     const selectedTerm = terms.find(term => term.id === selectedTermId);
     

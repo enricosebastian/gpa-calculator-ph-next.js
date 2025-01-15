@@ -6,6 +6,7 @@ import { DlsuFormula } from '@/_formulas/DlsuFormula';
 import { Calculator } from "@/_types/Calculator";
 import { useTermContext } from '@/_context/TermContext';
 import { Term } from '@/_types/Term';
+import {v4 as uuid} from "uuid"; 
 
 export default function RetroTable() {
     const {selectedTermId} = useMainContext();
@@ -23,7 +24,7 @@ export default function RetroTable() {
                     <Table/>
                 </div>
                 <div className="retrotable--footer--container">
-                    footer
+                    <button className={styles.retrotable_button}>export_grades</button> <button className={styles.retrotable_button}>import_grades</button>
                 </div>
             </div>
         </div>
@@ -63,7 +64,9 @@ interface TableRowProps {
 }
 
 function TableRow({course}: TableRowProps) {
-    const {modifyCourse, deleteCourse} = useCourseContext();
+    const {selectedCourses, selectedTermId: selectedTermId, setSelectedTermId: setSelectedTermId} = useMainContext();
+    const {terms, addTerm, modifyTerm, deleteTerm} = useTermContext();
+    const {courses, addCourse, modifyCourse, deleteCourse} = useCourseContext();
 
     const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (course === null)
@@ -130,13 +133,28 @@ function TableRow({course}: TableRowProps) {
         deleteCourse(deleted_course);
     }
 
+    const handleAddNewCourse = () => {
+        const new_course_id = uuid();
+
+        const new_course: Course = {
+            id: new_course_id,
+            name: '',
+            code: '',
+            grade: '',
+            unit: '',
+            term_id: selectedTermId
+        };
+        
+        addCourse(new_course);
+    };
+
     return (
         <tr>
             <td className={styles.long_column}><input type='text' id='course_name' name='' onChange={(e) => handleOnChange(e)} value={course.name}/></td>
             <td className={styles.medium_column}><input type='text' id='course_code' name='' onChange={(e) => handleOnChange(e)} value={course.code}/></td>
             <td><input type='text' id='course_grade' name='' onChange={(e) => handleOnChange(e)} value={course.grade}/></td>
             <td><input type='text' id='course_unit' name='' onChange={(e) => handleOnChange(e)} value={course.unit}/></td>
-            <td className={styles.hidden_column}><button className={styles.delete_course_button} onClick={() => handleDelete(course)}>x</button></td>
+            <td className={styles.hidden_column}><button className={styles.retrotable_button} style={{marginRight: 5}} onClick={() => handleAddNewCourse()}>+</button><button className={styles.retrotable_button} onClick={() => handleDelete(course)}>x</button></td>
         </tr>
     );
 }

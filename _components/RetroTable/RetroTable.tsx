@@ -22,7 +22,9 @@ export default function RetroTable() {
                 <div className="retrotable--table--container">
                     <Table/>
                 </div>
-                <div className="retrotable--footer--container"></div>
+                <div className="retrotable--footer--container">
+                    footer
+                </div>
             </div>
         </div>
     );

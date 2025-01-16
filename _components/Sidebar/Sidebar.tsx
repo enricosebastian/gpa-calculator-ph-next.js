@@ -7,6 +7,8 @@ import { ChangeEvent, useContext, useEffect } from "react";
 import {v4 as uuid} from "uuid"; 
 import { Term } from '@/_types/Term';
 import { Course } from '@/_types/Course';
+import { DlsuFormula } from '@/_formulas/DlsuFormula';
+import { Calculator } from '@/_types/Calculator';
 
 export default function Sidebar() {
     const colleges = ['DLSU', 'AdMU', 'UST'];
@@ -19,6 +21,9 @@ export default function Sidebar() {
     const selectedTerm = terms.find(term => term.id === selectedTermId);
     
     const term_select_fields = terms.map(term => <option key={term.id} value={term.id}>{term.name}</option>);
+
+    const my_formula: DlsuFormula = new DlsuFormula();
+    const my_calculator: Calculator = new Calculator(my_formula);
 
     const handleTermSelected = (e: ChangeEvent<HTMLSelectElement>) => {
         const new_selected_term = terms.find(term => term.id === e.target.value);
@@ -74,12 +79,18 @@ export default function Sidebar() {
         deleteTerm(selected_term);
     };
 
+    const termStanding = my_calculator.getTermStanding(selectedCourses) === '' ? <></> : <div className={styles.sidebar_row}><div className={styles.score_card}>{my_calculator.getTermStanding(selectedCourses)}</div></div>;
+    const overallStanding = my_calculator.getOverallStanding(courses) === '' ? <></> : <div className={styles.sidebar_row}><div className={styles.score_card}>{my_calculator.getOverallStanding(courses)}</div></div>;
+    
+
     return (
         <>
             <div className={`${styles.sidebar_container} ${styles.sidebar_1}`}>
                 <div className={styles.sidebar_content}>
-                    <div className={styles.sidebar_row}>your gpa is: <div className={styles.score_card}>4.000</div></div>
-                    <div className={styles.sidebar_row}>your cgpa is: <div className={styles.score_card}>4.000</div></div>
+                    <div className={styles.sidebar_row}>your gpa is: <div className={styles.score_card}>{my_calculator.getScore(selectedCourses)}</div></div>
+                    <div className={styles.sidebar_row}>your cgpa is: <div className={styles.score_card}>{my_calculator.getScore(courses)}</div></div>
+                    {termStanding}
+                    {overallStanding}
                 </div>
             </div>
             

@@ -7,18 +7,25 @@ import { Calculator } from "@/_types/Calculator";
 import { useTermContext } from '@/_context/TermContext';
 import { Term } from '@/_types/Term';
 import {v4 as uuid} from "uuid"; 
+import { ChangeEvent, useContext, useEffect } from "react";
 
 export default function RetroTable() {
     const {selectedTermId} = useMainContext();
-    const {terms} = useTermContext();
+    const {terms, addTerm, modifyTerm, deleteTerm} = useTermContext();
 
     const selectedTerm = terms.find(term => term.id === selectedTermId);
+
+    const handleTermNameChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const modified_term = {id: selectedTermId, name: e.target.value};
+
+        modifyTerm(modified_term);
+    };
 
     return (
         <div className="retrotable--container">
             <div className="retrotable--content">
                 <div className="retrotable--term--name--container">
-                    <input className="term--name--input" type="text" value={selectedTerm?.name}></input>
+                    <input className="term--name--input" type="text" value={selectedTerm?.name} onChange={e => handleTermNameChange(e)}></input>
                 </div>
                 <div className="retrotable--table--container">
                     <Table/>

@@ -8,10 +8,12 @@ import { useTermContext } from '@/_context/TermContext';
 import { Term } from '@/_types/Term';
 import {v4 as uuid} from "uuid"; 
 import { ChangeEvent, useContext, useEffect } from "react";
+import { ExcelSheet } from '@/_types/ExcelSheet';
 
 export default function RetroTable() {
-    const {selectedTermId} = useMainContext();
+    const {selectedCourses, selectedTermId, setSelectedTermId} = useMainContext();
     const {terms, addTerm, modifyTerm, deleteTerm} = useTermContext();
+    const {courses, addCourse, deleteCourse} = useCourseContext();
 
     const selectedTerm = terms.find(term => term.id === selectedTermId);
 
@@ -20,6 +22,56 @@ export default function RetroTable() {
 
         modifyTerm(modified_term);
     };
+
+    const handleClickImportButton = () => {
+        document.getElementById('import_grades_button')?.click();
+    }
+
+    const handleExportData = async () => {
+        ExcelSheet.export(terms, courses);
+    }
+
+    const handleFileUpload = async () => {
+        const file_uploader = document.querySelector<HTMLInputElement>('#excel--file--uploader');
+        if (file_uploader === null)
+            return;
+
+        if (file_uploader.files === null)
+            return;
+
+        if (file_uploader.files.length > 1)
+            return;
+
+        const file = file_uploader.files[0];
+        const excel_sheet: ExcelSheet = new ExcelSheet();
+
+        excel_sheet.initialize(file).then((data) => {
+            const [new_terms, new_courses] = excel_sheet.getTermsAndCourses();
+
+            courses.forEach(course => {
+                deleteCourse(course);
+            });
+
+            terms.forEach(term => {
+                deleteTerm(term);
+            });
+
+            new_terms.forEach(term => {
+                addTerm(term);
+            });
+
+            new_courses.forEach(course => {
+                addCourse(course);
+            });
+
+            if (new_terms.length > 0) {
+                setSelectedTermId(new_terms[0].id);
+            }
+        }).catch((error) => {
+            alert(error);
+            return;
+        })
+    }
 
     return (
         <div className="retrotable--container">
@@ -31,7 +83,8 @@ export default function RetroTable() {
                     <Table/>
                 </div>
                 <div className="retrotable--footer--container">
-                    <button className={styles.retrotable_button}>export_grades</button> <button className={styles.retrotable_button}>import_grades</button>
+                    <button className={styles.retrotable_button} onClick={handleExportData}>export_grades</button> <button onClick={handleClickImportButton} className={styles.retrotable_button}>import_grades</button>
+                    <input id='import_grades_button' className='hidden' type='file' accept='.xls,.xlsx' onChange={handleFileUpload}></input>
                 </div>
             </div>
         </div>

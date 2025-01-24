@@ -9,6 +9,7 @@ import { Term } from '@/_types/Term';
 import {v4 as uuid} from "uuid"; 
 import { ChangeEvent, useContext, useEffect } from "react";
 import { ExcelSheet } from '@/_types/ExcelSheet';
+import RetroButton from '../RetroButton/RetroButton';
 
 export default function RetroTable() {
     const {selectedCourses, selectedTermId, setSelectedTermId} = useMainContext();
@@ -83,7 +84,9 @@ export default function RetroTable() {
                     <Table/>
                 </div>
                 <div className="retrotable--footer--container">
-                    <button className={styles.retrotable_button} onClick={handleExportData}>export_grades</button> <button onClick={handleClickImportButton} className={styles.retrotable_button}>import_grades</button>
+
+                    <RetroButton onClick={handleExportData} value={'export grades'}/> <RetroButton onClick={handleClickImportButton} value={'import grades'}/>
+                    
                     <input id='import_grades_button' className='hidden' type='file' accept='.xls,.xlsx' onChange={handleFileUpload}></input>
                 </div>
             </div>
@@ -130,6 +133,7 @@ function Table() {
             <tbody>
                 {table_rows}
             </tbody>
+
         </table>
     );
 }

@@ -85,7 +85,7 @@ export default function RetroTable() {
                 </div>
                 <div className="retrotable--footer--container">
 
-                    <RetroButton onClick={handleExportData} value={'export grades'}/> <RetroButton onClick={handleClickImportButton} value={'import grades'}/>
+                    <RetroButton onClick={handleExportData}>export grades</RetroButton> <RetroButton onClick={handleClickImportButton}>import grades</RetroButton>
                     
                     <input id='import_grades_button' className='hidden' type='file' accept='.xls,.xlsx' onChange={handleFileUpload}></input>
                 </div>

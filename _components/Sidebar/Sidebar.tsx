@@ -103,7 +103,6 @@ export default function Sidebar() {
                     <div className={styles.sidebar_row}><RetroDropdown onChange={e => handleTermSelected(e)} value={selectedTermId}>{term_select_fields}</RetroDropdown><RetroButton onClick={handleAddNewTerm}>+</RetroButton><RetroButton onClick={() => {terms.length <= 1 ? null : handleDeleteTerm()}}>-</RetroButton></div>
                 </div>
             </div>
-        
         </>
     );
 }

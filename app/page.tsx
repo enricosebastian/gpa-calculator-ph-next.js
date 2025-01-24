@@ -6,7 +6,7 @@ import { MainContextProvider } from "@/_context/MainContext";
 import Toolbar from "@/_components/Toolbar/Toolbar";
 import Table from "@/_components/Table/Table";
 import Sidebar from "@/_components/Sidebar/Sidebar";
-import RetroTable from "@/_components/RetroTable/RetroTable";
+import Main from "@/_components/Main/Main";
 
 export default function Home() {
   return (
@@ -17,7 +17,7 @@ export default function Home() {
           <div className="main--viewport">
             <div className="main--content">
               <Sidebar/>
-              <RetroTable/>
+              <Main/>
             </div>
           </div>
         </MainContextProvider>

@@ -9,6 +9,7 @@ import { Term } from '@/_types/Term';
 import { Course } from '@/_types/Course';
 import { DlsuFormula } from '@/_formulas/DlsuFormula';
 import { Calculator } from '@/_types/Calculator';
+import RetroDropdown from '../RetroDropdown/RetroDropdown';
 
 export default function Sidebar() {
     const colleges = ['DLSU', 'AdMU', 'UST'];
@@ -97,6 +98,7 @@ export default function Sidebar() {
 
             <div className={`${styles.sidebar_container} ${styles.sidebar_2}`}> 
                 <div className={styles.sidebar_content}>
+                    <div><RetroDropdown><option>Test</option></RetroDropdown></div>
                     <div className={styles.sidebar_row}><select className={styles.sidebar_select}>{college_select_fields}</select></div>
                     <div className={styles.sidebar_row}><select className={styles.sidebar_select} onChange={e => handleTermSelected(e)} value={selectedTermId}>{term_select_fields}</select><button className={styles.sidebar_button} onClick={handleAddNewTerm}>+</button><button className={styles.sidebar_button} onClick={() => {terms.length <= 1 ? null : handleDeleteTerm()}}>-</button></div>
                 </div>

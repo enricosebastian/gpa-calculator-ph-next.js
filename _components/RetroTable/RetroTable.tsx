@@ -10,6 +10,7 @@ import {v4 as uuid} from "uuid";
 import { ChangeEvent, useContext, useEffect } from "react";
 import { ExcelSheet } from '@/_types/ExcelSheet';
 import RetroButton from '../RetroButton/RetroButton';
+import RetroInput from '../RetroInput/RetroInput';
 
 export default function RetroTable() {
     const {selectedCourses, selectedTermId, setSelectedTermId} = useMainContext();
@@ -78,7 +79,7 @@ export default function RetroTable() {
         <div className="retrotable--container">
             <div className="retrotable--content">
                 <div className="retrotable--term--name--container">
-                    <input className="term--name--input" type="text" value={selectedTerm?.name} onChange={e => handleTermNameChange(e)}></input>
+                    <RetroInput value={selectedTerm?.name} type="text" onChange={e => handleTermNameChange(e)}></RetroInput>
                 </div>
                 <div className="retrotable--table--container">
                     <Table/>

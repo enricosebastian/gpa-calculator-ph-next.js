@@ -30,7 +30,7 @@ export default function Main() {
     }
 
     const handleFileUpload = async () => {
-        const file_uploader = document.querySelector<HTMLInputElement>('#excel--file--uploader');
+        const file_uploader = document.querySelector<HTMLInputElement>('#import_grades_button');
         if (file_uploader === null)
             return;
 

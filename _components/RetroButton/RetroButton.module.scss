@@ -1,0 +1,16 @@
+.button {
+    border-style: solid;
+    border-color: black;
+    border-width: 5px;
+
+    background-color: white;
+
+    height: 50px;
+
+    font-size: 15px;
+    font-family: var(--press-start-2p);
+    
+    &:hover {
+        background-color: gray;
+    }
+}

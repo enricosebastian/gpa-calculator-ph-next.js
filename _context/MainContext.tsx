@@ -2,15 +2,16 @@ import React, { Dispatch, createContext, ReactNode, useContext, useReducer, useE
 import { termReducer, TermReducerPayload } from "@/_reducers/termReducer";
 import { Term } from "@/_types/Term";
 import initializeTerms from "@/_utils/initializeTerms";
-import { Action } from "@/_types/Enums";
+import { Action, University } from "@/_types/Enums";
 import { Course } from "@/_types/Course";
 import { useTermContext } from "./TermContext";
 import { useCourseContext } from "./CourseContext";
 
 type MainContextProps = {
+    university: University,
     selectedTermId: string,
     setSelectedTermId: React.Dispatch<React.SetStateAction<string>>,
-    selectedCourses: Course[]
+    selectedCourses: Course[],
 };
 
 export const MainContext = createContext<MainContextProps | null>(null);
@@ -32,25 +33,10 @@ export const MainContextProvider = ({children}: {children: ReactNode}) => {
     const selected_courses = courses.filter(course => course.term_id === selected_term_id);
     const [gpa, setGpa] = useState<string>('0');
     const [cgpa, setCgpa] = useState<string>('0');
-
-    // // Responsible for updating everything if we update the selected term
-    // useEffect(() => {
-    //     const new_selected_term = terms.find(term => term.id === selected_term.id);
-
-    //     if (terms.length === 1) {
-    //         setSelectedTerm(terms[0]);
-    //     }
-
-    //     if (!new_selected_term) {
-    //         throw new Error('This term does not exist!');
-    //     }
-        
-    //     setSelectedTerm(new_selected_term);
-
-    // }, [terms]);
+    const [university, setUniversity] = useState<University>(University.NONE);
 
     return (
-        <MainContext.Provider value={{selectedTermId: selected_term_id, setSelectedTermId: setSelectedTermId, selectedCourses: selected_courses}}>
+        <MainContext.Provider value={{selectedTermId: selected_term_id, setSelectedTermId: setSelectedTermId, selectedCourses: selected_courses, university: university}}>
             {children}
         </MainContext.Provider>
     );

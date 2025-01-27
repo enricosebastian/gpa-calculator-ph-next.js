@@ -1,13 +1,70 @@
+:root {
+    --viewport-padding-size: 100px;
+}
+
 html, body {
     margin: 0px;
     padding: 0px;
+
+    height: 100%;
+    width: 100%;
+
+    background-color: red;
 }
 
-table, th, tr, td {
-    border: 0.15rem solid;
-    border-collapse: collapse;
+body {
+    display: flex;
+    justify-content: center;
 }
 
-input {
-    border: 0px;
+.press-start-2p {
+    font-family: var(--press-start-2p);
+}
+
+.vt323 {
+    font-family: var(--vt323);
+}
+
+.main--header {
+    position: absolute;
+    font-family: var(--press-start-2p);
+    background-color: white;
+
+    top: calc(var(--viewport-padding-size)/2);
+
+    padding: 50px;
+
+    font-size: 25px;
+    text-align: center;
+
+    border-style: solid;
+    border-width: 5px;
+    border-color: black;
+}
+
+.main--viewport {
+    width: 100%;
+
+    background-color: green;
+    padding: var(--viewport-padding-size);
+}
+
+.main--content {
+    width: 100%;
+    
+    background-color: pink;
+
+    border-style: solid;
+    border-width: 5px;
+    border-color: black;
+}
+
+.main--content {
+    display: grid;
+    grid-template-columns: 0.5fr 2fr; /* Two columns: left side and right side */
+    grid-template-rows: 1fr 1fr;   /* Two rows: top and bottom */
+}
+
+.hidden {
+    display: none;
 }

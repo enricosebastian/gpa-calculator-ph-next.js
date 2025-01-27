@@ -40,7 +40,7 @@
         border-color: transparent;
         opacity: 0;
 
-        min-width: 100px;
+        width: auto;
 
         &:hover {
             opacity: 100%;
@@ -49,10 +49,18 @@
 
     .long_column {
         min-width: 300px;
+
+        @media all and (max-width: 1200px) {
+            min-width: auto;
+        }
     }
 
     .medium_column {
         min-width: 200px;
+
+        @media all and (max-width: 1200px) {
+            min-width: auto;
+        }
     }
 
     .retrotable_button {

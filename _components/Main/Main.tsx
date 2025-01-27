@@ -72,20 +72,22 @@ export default function Main() {
     }
 
     return (
-        <div className="retrotable--container">
-            <div className="retrotable--content">
-                <div className="retrotable--term--name--container">
+        <div className={styles.container}>
+            <div className={styles.content}>
+
+                <div className={styles.header}>
                     <RetroInput value={selectedTerm?.name} type="text" onChange={e => handleTermNameChange(e)}></RetroInput>
                 </div>
-                <div className="retrotable--table--container">
+
+                <div className={styles.body}>
                     <RetroTable/>
                 </div>
-                <div className="retrotable--footer--container">
 
+                <div className={styles.footer}>
                     <RetroButton onClick={handleExportData}>export grades</RetroButton> <RetroButton onClick={handleClickImportButton}>import grades</RetroButton>
-                    
                     <input id='import_grades_button' className='hidden' type='file' accept='.xls,.xlsx' onChange={handleFileUpload}></input>
                 </div>
+
             </div>
         </div>
     );

@@ -11,9 +11,11 @@ import { DlsuFormula } from '@/_formulas/DlsuFormula';
 import { Calculator } from '@/_types/Calculator';
 import RetroDropdown from '../RetroDropdown/RetroDropdown';
 import RetroButton from '../RetroButton/RetroButton';
+import { University } from '@/_types/Enums';
 
 export default function Sidebar() {
-    const colleges = ['DLSU', 'AdMU', 'UST'];
+    const colleges: string[] = Object.keys(University).filter(university => university !== 'NONE');
+
     const college_select_fields = colleges.map(college => <option key={college} value={college}>{college}</option>)
 
     const {selectedCourses, selectedTermId: selectedTermId, setSelectedTermId: setSelectedTermId} = useMainContext();

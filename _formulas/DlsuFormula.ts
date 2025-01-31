@@ -46,7 +46,7 @@ export class DlsuFormula implements Formula {
         let message = '';
 
         if (cgpa >= 3.8) {
-            message = 'Summa Cum Luade';
+            message = 'Summa Cum Laude';
         } else if (cgpa >= 3.6) {
             message = 'Magna Cum Laude';
         } else if (cgpa >= 3.4) {

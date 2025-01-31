@@ -3,6 +3,7 @@ import "./globals.scss";
 
 import { Press_Start_2P } from "next/font/google";
 import { VT323 } from "next/font/google";
+import { ThemeProvider } from "next-themes";
 
 export const metadata: Metadata = {
   title: "PH GPA Calculator",
@@ -27,9 +28,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${press_start_2p.variable} ${vt323.variable}`}>
-        {children}
+        <ThemeProvider enableSystem={false} defaultTheme="DLSU">{children}</ThemeProvider>
       </body>
     </html>
   );

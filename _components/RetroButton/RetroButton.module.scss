@@ -1,9 +1,11 @@
 .button {
     border-style: solid;
-    border-color: black;
+    border-color: var(--border--color);
     border-width: 5px;
 
-    background-color: white;
+    background-color: var(--background--color);
+
+    color: var(--font--color);
 
     height: 50px;
 
@@ -11,6 +13,6 @@
     font-family: var(--press-start-2p);
     
     &:hover {
-        background-color: gray;
+        background-color: var(--highlight);
     }
 }

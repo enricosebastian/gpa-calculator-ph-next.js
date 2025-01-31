@@ -2,6 +2,38 @@
     --viewport-padding-size: 100px;
 }
 
+:root {
+    --background--color: white;
+    --foreground--color: black;
+    --border--color: black;
+    --highlight: gray;
+    --font--color: black;
+}
+
+:root[data-theme='DLSU'] {
+    --background--color: green;
+    --foreground--color: white;
+    --border--color: white;
+    --highlight: gray;
+    --font--color: white;
+}
+
+:root[data-theme='UST'] {
+    --background--color: yellow;
+    --foreground--color: black;
+    --border--color: black;
+    --highlight: gray;
+    --font--color: black;
+}
+
+:root[data-theme='ADMU'] {
+    --background--color: white;
+    --foreground--color: black;
+    --border--color: black;
+    --highlight: gray;
+    --font--color: white;
+}
+
 html, body {
     margin: 0px;
     padding: 0px;
@@ -9,7 +41,8 @@ html, body {
     height: 100%;
     width: 100%;
 
-    background-color: red;
+    background-color: var(--background--color);
+    color: var(--font--color);
 }
 
 body {
@@ -28,7 +61,6 @@ body {
 .main--header {
     position: absolute;
     font-family: var(--press-start-2p);
-    background-color: white;
 
     top: calc(var(--viewport-padding-size)/2);
 
@@ -39,24 +71,22 @@ body {
 
     border-style: solid;
     border-width: 5px;
-    border-color: black;
+    border-color: var(--border--color);
+    background-color: var(--background--color);
 }
 
 .main--viewport {
     width: 100%;
 
-    background-color: green;
     padding: var(--viewport-padding-size);
 }
 
 .main--content {
     width: 100%;
-    
-    background-color: pink;
 
     border-style: solid;
     border-width: 5px;
-    border-color: black;
+    border-color: var(--border--color);
 }
 
 .main--content {

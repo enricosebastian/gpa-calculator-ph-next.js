@@ -1,6 +1,7 @@
 .select {
     border-style: solid;
-    border-color: black;
+    border-color: var(--border--color);
+    background-color: var(--background--color);
     border-width: 5px;
 
     width: 100%;
@@ -8,6 +9,7 @@
 
     font-size: 15px;
     font-family: var(--press-start-2p);
+    color: var(--font--color);
 
     border-radius: 0px;
 }

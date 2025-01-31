@@ -1,7 +1,11 @@
 .retrotable {
     font-family: var(--press-start-2p);
+    color: var(--font--color);
+    
     border: 5px solid;
     border-collapse: collapse;
+
+    border-color: red;
 
     // Makes sure the size is fixed and does not change based on input
     table-layout: fixed; 
@@ -15,6 +19,8 @@
 
         input {
             border-style: none;
+
+            color: var(--font--color);
 
             font-size: 15px;
             font-family: var(--press-start-2p);
@@ -61,19 +67,5 @@
         @media all and (max-width: 1200px) {
             min-width: auto;
         }
-    }
-
-    .retrotable_button {
-        border-style: solid;
-        border-color: black;
-        border-width: 5px;
-
-        height: 40px;
-        width: 40px;
-
-        background-color: white;
-
-        font-family: var(--press-start-2p);
-        font-size: 15px;
     }
 }

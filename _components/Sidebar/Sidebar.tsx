@@ -1,9 +1,8 @@
 import { useMainContext } from '@/_context/MainContext';
 import styles from './Sidebar.module.scss';
 import { useTermContext } from '@/_context/TermContext';
-import { Tenali_Ramakrishna } from 'next/font/google';
 import { useCourseContext } from '@/_context/CourseContext';
-import { ChangeEvent, useContext, useEffect } from "react";
+import { ChangeEvent } from "react";
 import {v4 as uuid} from "uuid"; 
 import { Term } from '@/_types/Term';
 import { Course } from '@/_types/Course';
@@ -12,11 +11,12 @@ import { Calculator } from '@/_types/Calculator';
 import RetroDropdown from '../RetroDropdown/RetroDropdown';
 import RetroButton from '../RetroButton/RetroButton';
 import { University } from '@/_types/Enums';
+import { useTheme } from 'next-themes';
 
 export default function Sidebar() {
     const colleges: string[] = Object.keys(University).filter(university => university !== 'NONE');
-
     const college_select_fields = colleges.map(college => <option key={college} value={college}>{college}</option>)
+    const {theme, setTheme} = useTheme();
 
     const {selectedCourses, selectedTermId: selectedTermId, setSelectedTermId: setSelectedTermId} = useMainContext();
     const {terms, addTerm, modifyTerm, deleteTerm} = useTermContext();
@@ -85,7 +85,6 @@ export default function Sidebar() {
 
     const termStanding = my_calculator.getTermStanding(selectedCourses) === '' ? <></> : <div className={styles.sidebar_row}><div className={styles.score_card}>{my_calculator.getTermStanding(selectedCourses)}</div></div>;
     const overallStanding = my_calculator.getOverallStanding(courses) === '' ? <></> : <div className={styles.sidebar_row}><div className={styles.score_card}>{my_calculator.getOverallStanding(courses)}</div></div>;
-    
 
     return (
         <>

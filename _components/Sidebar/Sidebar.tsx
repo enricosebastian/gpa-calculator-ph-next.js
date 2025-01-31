@@ -39,6 +39,16 @@ export default function Sidebar() {
         setSelectedTermId(new_selected_term.id);
     };
 
+    const handleCollegeSelected = (e: ChangeEvent<HTMLSelectElement>) => {
+        const new_selected_university: string = e.target.value;
+        
+        if (!new_selected_university) {
+            throw new Error('University does not exist!');
+        }
+
+        setTheme(new_selected_university);
+    };
+
     const handleAddNewTerm = () => {
         const new_term_id = uuid();
 
@@ -100,7 +110,7 @@ export default function Sidebar() {
 
             <div className={`${styles.sidebar_container} ${styles.sidebar_2}`}> 
                 <div className={styles.sidebar_content}>
-                    <div className={styles.sidebar_row}><RetroDropdown>{college_select_fields}</RetroDropdown></div>
+                    <div className={styles.sidebar_row}><RetroDropdown onChange={e => handleCollegeSelected(e)}>{college_select_fields}</RetroDropdown></div>
                     <div className={styles.sidebar_row}><RetroDropdown onChange={e => handleTermSelected(e)} value={selectedTermId}>{term_select_fields}</RetroDropdown><RetroButton onClick={handleAddNewTerm}>+</RetroButton><RetroButton onClick={() => {terms.length <= 1 ? null : handleDeleteTerm()}}>-</RetroButton></div>
                 </div>
             </div>

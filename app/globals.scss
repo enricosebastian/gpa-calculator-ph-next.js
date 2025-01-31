@@ -13,6 +13,7 @@
 :root[data-theme='DLSU'] {
     --background--color: green;
     --foreground--color: white;
+
     --border--color: white;
     --highlight: gray;
     --font--color: white;
@@ -21,15 +22,17 @@
 :root[data-theme='UST'] {
     --background--color: yellow;
     --foreground--color: black;
+
     --border--color: black;
     --highlight: gray;
     --font--color: black;
 }
 
 :root[data-theme='ADMU'] {
-    --background--color: white;
-    --foreground--color: black;
-    --border--color: black;
+    --background--color: blue;
+    --foreground--color: white;
+
+    --border--color: white;
     --highlight: gray;
     --font--color: white;
 }

@@ -9,6 +9,7 @@ import { useCourseContext } from "./CourseContext";
 
 type MainContextProps = {
     university: University,
+    setUniversity: React.Dispatch<React.SetStateAction<University>>,
     selectedTermId: string,
     setSelectedTermId: React.Dispatch<React.SetStateAction<string>>,
     selectedCourses: Course[],
@@ -33,10 +34,10 @@ export const MainContextProvider = ({children}: {children: ReactNode}) => {
     const selected_courses = courses.filter(course => course.term_id === selected_term_id);
     const [gpa, setGpa] = useState<string>('0');
     const [cgpa, setCgpa] = useState<string>('0');
-    const [university, setUniversity] = useState<University>(University.NONE);
+    const [university, setUniversity] = useState<University>(University.DLSU);
 
     return (
-        <MainContext.Provider value={{selectedTermId: selected_term_id, setSelectedTermId: setSelectedTermId, selectedCourses: selected_courses, university: university}}>
+        <MainContext.Provider value={{selectedTermId: selected_term_id, setSelectedTermId: setSelectedTermId, selectedCourses: selected_courses, university: university, setUniversity: setUniversity}}>
             {children}
         </MainContext.Provider>
     );

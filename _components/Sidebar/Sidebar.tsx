@@ -2,7 +2,7 @@ import { useMainContext } from '@/_context/MainContext';
 import styles from './Sidebar.module.scss';
 import { useTermContext } from '@/_context/TermContext';
 import { useCourseContext } from '@/_context/CourseContext';
-import { ChangeEvent } from "react";
+import { ChangeEvent, useState } from "react";
 import {v4 as uuid} from "uuid"; 
 import { Term } from '@/_types/Term';
 import { Course } from '@/_types/Course';
@@ -14,20 +14,19 @@ import { University } from '@/_types/Enums';
 import { useTheme } from 'next-themes';
 
 export default function Sidebar() {
-    const colleges: string[] = Object.keys(University).filter(university => university !== 'NONE');
-    const college_select_fields = colleges.map(college => <option key={college} value={college}>{college}</option>)
     const {theme, setTheme} = useTheme();
 
-    const {selectedCourses, selectedTermId: selectedTermId, setSelectedTermId: setSelectedTermId} = useMainContext();
+    const {selectedCourses, selectedTermId, setSelectedTermId, university, setUniversity} = useMainContext();
     const {terms, addTerm, modifyTerm, deleteTerm} = useTermContext();
     const {courses, addCourse, deleteCourse} = useCourseContext();
     
     const selectedTerm = terms.find(term => term.id === selectedTermId);
-    
     const term_select_fields = terms.map(term => <option key={term.id} value={term.id}>{term.name}</option>);
 
-    const my_formula: DlsuFormula = new DlsuFormula();
-    const my_calculator: Calculator = new Calculator(my_formula);
+    const colleges: string[] = Object.keys(University).filter(university => university !== 'NONE');
+    const college_select_fields = colleges.map(college => <option key={college} value={college}>{college}</option>)
+
+    const my_calculator = new Calculator(university);
 
     const handleTermSelected = (e: ChangeEvent<HTMLSelectElement>) => {
         const new_selected_term = terms.find(term => term.id === e.target.value);
@@ -40,13 +39,14 @@ export default function Sidebar() {
     };
 
     const handleCollegeSelected = (e: ChangeEvent<HTMLSelectElement>) => {
-        const new_selected_university: string = e.target.value;
+        const new_selected_university: University = e.target.value as University;
         
         if (!new_selected_university) {
             throw new Error('University does not exist!');
         }
 
         setTheme(new_selected_university);
+        setUniversity(new_selected_university);
     };
 
     const handleAddNewTerm = () => {

@@ -11,29 +11,29 @@
 }
 
 :root[data-theme='DLSU'] {
-    --background--color: green;
+    --background--color: #00703C;
     --foreground--color: white;
 
     --border--color: white;
-    --highlight: gray;
+    --highlight: #002413;
     --font--color: white;
 }
 
 :root[data-theme='UST'] {
-    --background--color: yellow;
+    --background--color: #FFC72C;
     --foreground--color: black;
 
     --border--color: black;
-    --highlight: gray;
+    --highlight: #F8B600;
     --font--color: black;
 }
 
 :root[data-theme='ADMU'] {
-    --background--color: blue;
+    --background--color: #003A6C;
     --foreground--color: white;
 
     --border--color: white;
-    --highlight: gray;
+    --highlight: #003461;
     --font--color: white;
 }
 

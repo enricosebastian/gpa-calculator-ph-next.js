@@ -94,8 +94,10 @@ body {
 
 .main--content {
     display: grid;
-    grid-template-columns: 0.5fr 2fr; /* Two columns: left side and right side */
-    grid-template-rows: 1fr 1fr;   /* Two rows: top and bottom */
+    grid-auto-flow: column; /* Add new items in columns */
+    grid-template-rows: repeat(2, 1fr);  /* Two rows: top and bottom, equal size*/
+
+    padding-top: 50px;
 }
 
 .hidden {

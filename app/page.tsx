@@ -8,14 +8,15 @@ import Table from "@/_components/Table/Table";
 import Sidebar from "@/_components/Sidebar/Sidebar";
 import Main from "@/_components/Main/Main";
 import { ReactNode, useEffect, useState } from "react";
+import RetroDiv from "@/_components/RetroDiv/RetroDiv";
 
 export default function Home() {
 
-  const [isMobile, setIsMobile] = useState(false);
+  const [isCompactMode, setIsCompactMode] = useState(false);
 
   useEffect(() => {
     const checkScreenSize = () => {
-      setIsMobile(window.innerWidth <= 768);
+      setIsCompactMode(window.innerWidth <= 768);
     };
 
     checkScreenSize();
@@ -24,7 +25,7 @@ export default function Home() {
     return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
 
-  const content = isMobile? <div>mobile_mode</div> : showDesktopMode();
+  const content = isCompactMode? showCompactMode() : showDesktopMode();
 
   return (
     <CourseContextProvider>
@@ -36,6 +37,19 @@ export default function Home() {
     </CourseContextProvider>
   );
 }
+
+function showCompactMode() : ReactNode {
+  return (
+    <>
+      <div className="main--viewport">
+        <RetroDiv/>
+      </div>
+      
+    </>
+  );
+
+
+} 
 
 function showDesktopMode() : ReactNode {
   return (

@@ -1,13 +1,14 @@
-
+:root {
+    --component_height: 150px;
+}
 
 .retro_div {
-
     background-color: red;
     border-color: black;
     border-width: 5px;
     border-style: solid;
 
-    height: 500px;
+    height: 100%;
     width: 100%;
 
     position: relative;
@@ -19,25 +20,18 @@
 
     .component {
         background-color: green;
-        height: 20%;
-        width: 50%;
+        height: var(--component_height);
+        width: 80%;
 
         position: absolute;
+        z-index: 3;
     }
 
     .top {
-        top: -25px;
-    }
-
-    .right {
-        right: -25px;
-    }
-
-    .left {
-        left: -25px;
+        top: calc(-1 * var(--component_height)/2);
     }
 
     .bottom {
-        bottom: -25px;
+        bottom: calc(-1 * var(--component_height)/2);
     }
 }

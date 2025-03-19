@@ -1,5 +1,8 @@
 :root {
     --component_height: 150px;
+
+    --box_height: 50px;
+    --box_width: 50px;
 }
 
 .retro_div {
@@ -34,4 +37,42 @@
     .bottom {
         bottom: calc(-1 * var(--component_height)/2);
     }
+}
+
+.box {
+    background-color: yellow;
+    height: var(--box_height);
+    width: var(--box_width);
+
+    position: absolute;
+    z-index: 3;
+
+    &.top { top: calc(-1 * var(--box_height)/2); }
+    &.bottom { bottom: calc(-1 * var(--box_height)/2);}
+    &.left { left: calc(-1 * var(--box_height)/2); }
+    &.right { right: calc(-1 * var(--box_height)/2);}
+
+    // Combination styles
+    &.top.left, &.left.top { 
+        top: calc(-1 * var(--box_height)/2);
+        left: calc(-1 * var(--box_height)/2);
+    }    
+    
+    // Top + Left
+    &.top.right, &.right.top { 
+        top: calc(-1 * var(--box_height)/2);
+        right: calc(-1 * var(--box_height)/2);
+    }  
+    
+    // Top + Right
+    &.bottom.left, &.left.bottom { 
+        bottom: calc(-1 * var(--box_height)/2);
+        left: calc(-1 * var(--box_height)/2);
+    }  
+    
+    // Bottom + Left
+    &.bottom.right, &.right.bottom {
+        bottom: calc(-1 * var(--box_height)/2);
+        right: calc(-1 * var(--box_height)/2);
+    }  // Bottom + Right
 }

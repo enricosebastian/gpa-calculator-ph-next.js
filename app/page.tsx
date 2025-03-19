@@ -43,9 +43,6 @@ function showCompactMode() : ReactNode {
     <>
       <div className="main--viewport">
         <RetroDiv/>
-        <RetroDiv/>
-        <RetroDiv/>
-        <RetroDiv/>
       </div>
       
     </>

@@ -5,7 +5,7 @@ export default function RetroDiv() {
 
     return (
         <div className={styles.retro_div}>
-            <div className={`${styles.component} ${styles.bottom}`}>this is a test</div>
+            <div className={`${styles.box} ${styles.bottom} ${styles.left}`}>this is a test</div>
             this is the content in retro div!
         </div>
     );

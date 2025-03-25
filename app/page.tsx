@@ -8,7 +8,8 @@ import Table from "@/_components/Table/Table";
 import Sidebar from "@/_components/Sidebar/Sidebar";
 import Main from "@/_components/Main/Main";
 import { ReactNode, useEffect, useState } from "react";
-import RetroDiv from "@/_components/RetroDiv/RetroDiv";
+import {RetroDiv, RetroDivButton, RetroDivSubComponent} from "@/_components/RetroDiv/RetroDiv";
+import RetroDropdown from "@/_components/RetroDropdown/RetroDropdown";
 
 export default function Home() {
 
@@ -42,7 +43,13 @@ function showCompactMode() : ReactNode {
   return (
     <>
       <div className="main--viewport">
-        <RetroDiv/>
+        <RetroDiv>
+          <RetroDivSubComponent>
+              <RetroDropdown><option>test</option></RetroDropdown>
+            </RetroDivSubComponent>
+
+            <RetroDivButton>x</RetroDivButton>
+        </RetroDiv>
       </div>
       
     </>

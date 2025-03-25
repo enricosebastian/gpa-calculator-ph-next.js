@@ -1,18 +1,18 @@
-import { Children, MouseEventHandler, ReactNode, useEffect, useState } from 'react';
+import { Children, CSSProperties, MouseEventHandler, ReactNode, useEffect, useState } from 'react';
 import styles from './RetroDiv.module.scss';
-import RetroDropdown from '../RetroDropdown/RetroDropdown';
 import { Orientation } from '@/_types/Enums';
 
 interface RetroDivProps {
     children?: ReactNode,
     className?: string,
     onClick?: MouseEventHandler<HTMLDivElement>,
+    style?: CSSProperties
 }
 
 export function RetroDiv({children, ...props}: RetroDivProps) {
 
     return (
-        <div className={`${styles.retro_div} ${props.className}`} onClick={props.onClick}>
+        <div style={props.style} className={`${styles.retro_div} ${props.className}`} onClick={props.onClick}>
             {children}
         </div>
     );

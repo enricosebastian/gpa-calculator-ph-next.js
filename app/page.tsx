@@ -11,6 +11,7 @@ import { ReactNode, useEffect, useState } from "react";
 import {RetroDiv, RetroDivButton, RetroDivSubComponent} from "@/_components/RetroDiv/RetroDiv";
 import RetroDropdown from "@/_components/RetroDropdown/RetroDropdown";
 import { Orientation } from "@/_types/Enums";
+import CompactMain from "@/_components/CompactMain/CompactMain";
 
 export default function Home() {
 
@@ -44,19 +45,7 @@ function showCompactMode() : ReactNode {
   return (
     <>
       <div className="main--viewport">
-        <RetroDiv>
-          <RetroDivSubComponent orientation={Orientation.TOP}>
-              <RetroDropdown><option>dlsu_gpa</option></RetroDropdown>
-          </RetroDivSubComponent>
-
-          <RetroDivSubComponent orientation={Orientation.BOTTOM}>
-              <RetroDropdown><option>term_1</option></RetroDropdown>
-          </RetroDivSubComponent>
-
-
-          <RetroDivButton orientation={Orientation.BOTTOM_LEFT}>+</RetroDivButton>
-          <RetroDivButton orientation={Orientation.BOTTOM_RIGHT}>x</RetroDivButton>
-        </RetroDiv>
+        <CompactMain/>
       </div>
       
     </>

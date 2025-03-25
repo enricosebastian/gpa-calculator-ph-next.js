@@ -20,21 +20,25 @@
 
     align-items: center;
     justify-content: center;
+}
 
-    .component {
-        background-color: green;
-        height: var(--component_height);
-        width: 80%;
+.component {
+    background-color: green;
+    height: var(--component_height);
+    width: 80%;
 
-        position: absolute;
-        z-index: 3;
-    }
+    position: absolute;
+    z-index: 3;
 
-    .top {
+    border-color: black;
+    border-width: 5px;
+    border-style: solid;
+
+    &.top {
         top: calc(-1 * var(--component_height)/2);
     }
 
-    .bottom {
+    &.bottom {
         bottom: calc(-1 * var(--component_height)/2);
     }
 }
@@ -44,8 +48,20 @@
     height: var(--box_height);
     width: var(--box_width);
 
+    border-color: black;
+    border-width: 5px;
+    border-style: solid;
+
     position: absolute;
     z-index: 3;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: var(--press-start-2p);
+    font-size: 25px;
+    cursor: pointer;
 
     &.top { top: calc(-1 * var(--box_height)/2); }
     &.bottom { bottom: calc(-1 * var(--box_height)/2);}

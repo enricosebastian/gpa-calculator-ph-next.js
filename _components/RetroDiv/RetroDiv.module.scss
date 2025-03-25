@@ -1,5 +1,5 @@
 :root {
-    --component_height: 150px;
+    --component_height: 50px;
 
     --box_height: 50px;
     --box_width: 50px;
@@ -29,10 +29,6 @@
 
     position: absolute;
     z-index: 3;
-
-    border-color: black;
-    border-width: 5px;
-    border-style: solid;
 
     &.top {
         top: calc(-1 * var(--component_height)/2);

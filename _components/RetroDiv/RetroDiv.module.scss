@@ -50,6 +50,10 @@
     border-width: 5px;
     border-style: solid;
 
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+
     position: absolute;
     z-index: 3;
 

@@ -18,6 +18,7 @@ export default function CompactMain() {
 
     const colleges: string[] = Object.keys(University).filter(university => university !== 'NONE');
     const college_select_fields = colleges.map(college => <option key={college} value={college}>{college}</option>)
+    const term_select_fields = terms.map(term => <option key={term.id} value={term.id}>{term.name}</option>);
 
     const retroDivCourses = selectedCourses.map(course => <RetroDivCourse key={course.code} course={course}/>);
 
@@ -31,6 +32,16 @@ export default function CompactMain() {
         setTheme(new_selected_university);
         setUniversity(new_selected_university);
     };
+
+    const handleTermSelected = (e: ChangeEvent<HTMLSelectElement>) => {
+        const new_selected_term = terms.find(term => term.id === e.target.value);
+        
+        if (!new_selected_term) {
+            throw new Error('Term does not exist!');
+        }
+
+        setSelectedTermId(new_selected_term.id);
+    };
     
 
     return (
@@ -41,7 +52,7 @@ export default function CompactMain() {
                 </RetroDivSubComponent>
 
                 <RetroDivSubComponent orientation={Orientation.BOTTOM}>
-                    <RetroDropdown><option>term_1</option></RetroDropdown>
+                    <RetroDropdown onChange={e => handleTermSelected(e)} value={selectedTermId}>{term_select_fields}</RetroDropdown>
                 </RetroDivSubComponent>
 
 

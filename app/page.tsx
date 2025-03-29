@@ -3,14 +3,9 @@
 import { CourseContextProvider } from "@/_context/CourseContext"
 import { TermContextProvider } from "@/_context/TermContext"
 import { MainContextProvider } from "@/_context/MainContext";
-import Toolbar from "@/_components/Toolbar/Toolbar";
-import Table from "@/_components/Table/Table";
 import Sidebar from "@/_components/Sidebar/Sidebar";
 import Main from "@/_components/Main/Main";
 import { ReactNode, useEffect, useState } from "react";
-import {RetroDiv, RetroDivButton, RetroDivSubComponent} from "@/_components/RetroDiv/RetroDiv";
-import RetroDropdown from "@/_components/RetroDropdown/RetroDropdown";
-import { Orientation } from "@/_types/Enums";
 import CompactMain from "@/_components/CompactMain/CompactMain";
 
 export default function Home() {

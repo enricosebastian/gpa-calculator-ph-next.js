@@ -1,8 +1,14 @@
 :root {
     --viewport-padding-size: 100px;
+    
     @media all and (max-width: 800px) {
         --viewport-padding-size: 50px;
     }
+
+    // For mobile sizing
+    --component_height: 50px;
+    --box_height: 50px;
+    --box_width: 50px;
 }
 
 :root {

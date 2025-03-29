@@ -19,6 +19,7 @@ export default function CompactMain() {
     const {selectedCourses, selectedTermId, setSelectedTermId, university, setUniversity} = useMainContext();
     const {terms, addTerm, modifyTerm, deleteTerm} = useTermContext();
     const {courses, addCourse, deleteCourse} = useCourseContext();
+    const selectedTerm = terms.find(term => term.id === selectedTermId);
 
     const {theme, setTheme} = useTheme();
 
@@ -160,6 +161,12 @@ export default function CompactMain() {
         deleteTerm(selected_term);
     };
 
+    const handleTermNameChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const modified_term = {id: selectedTermId, name: e.target.value};
+
+        modifyTerm(modified_term);
+    };
+
     return (
         <>
             <RetroDiv className={styles.main_div}>
@@ -176,8 +183,11 @@ export default function CompactMain() {
 
                 <div className={styles.content}>Standing: {my_calculator.getOverallStanding(courses)}</div>
                 <div className={styles.content}>Term: {my_calculator.getTermStanding(selectedCourses)}</div>
-                <div className={styles.content}>GPA: {my_calculator.getScore(selectedCourses)}</div>
                 <div className={styles.content}>CGPA: {my_calculator.getScore(courses)}</div>
+
+                <div className={styles.content}>term_name: <RetroInput className={styles.term_name_input} type="text" value={selectedTerm?.name} onChange={e => handleTermNameChange(e)}></RetroInput></div>
+                
+                <div className={styles.content}>GPA: {my_calculator.getScore(selectedCourses)}</div>
             </RetroDiv>
             
             <div className={styles.button_area}>

@@ -17,8 +17,25 @@
         font-family: var(--press-start-2p);
         font-size: 1.2rem;
 
+        display: flex;
+        align-items: center;
+
         &:not(:last-child) {
             margin-bottom: 50px;
+        }
+
+        .term_name_input {
+            background-color: transparent;
+
+            border-top-width: 0;
+            border-left-width: 0;
+            border-right-width: 0;
+
+            min-width: 0px;
+            width: 100%;
+
+            min-height: 0px;
+            height: 100%;
         }
     }
 

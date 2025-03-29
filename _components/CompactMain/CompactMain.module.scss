@@ -5,6 +5,7 @@
     height: 500px;
     padding-left: 50px;
     padding-right: 50px;
+    margin-bottom: 75px;
     
     .content {
         width: 100%;
@@ -16,4 +17,14 @@
         }
     }
 
+}
+
+.button_area {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    margin-bottom: 50px;
+    
+    gap: 30px;
 }

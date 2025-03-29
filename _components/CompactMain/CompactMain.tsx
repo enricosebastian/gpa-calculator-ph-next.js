@@ -69,6 +69,11 @@ export default function CompactMain() {
                 <div className={styles.content}>CGPA: {my_calculator.getScore(courses)}</div>
             </RetroDiv>
             
+            <div className={styles.button_area}>
+                <RetroButton>Add a course</RetroButton>
+            </div>
+            
+
             {retroDivCourses}
         </>
     );

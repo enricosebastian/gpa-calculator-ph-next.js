@@ -13,6 +13,7 @@ import RetroButton from "../RetroButton/RetroButton";
 import {v4 as uuid} from 'uuid'; 
 import { ExcelSheet } from '@/_types/ExcelSheet';
 import RetroInput from "../RetroInput/RetroInput";
+import { Term } from "@/_types/Term";
 
 export default function CompactMain() {
     const {selectedCourses, selectedTermId, setSelectedTermId, university, setUniversity} = useMainContext();
@@ -115,6 +116,50 @@ export default function CompactMain() {
         })
     }
 
+    const handleAddNewTerm = () => {
+        const new_term_id = uuid();
+
+        const new_term: Term = {
+            id: new_term_id,
+            name: `term ${new_term_id.substring(0,4)}`
+        };
+
+        const new_course: Course = {
+            id: uuid(),
+            name: '',
+            code: '',
+            grade: '',
+            unit: '',
+            term_id: new_term_id
+        };
+
+        addTerm(new_term);
+        addCourse(new_course);
+        setSelectedTermId(new_term_id);
+    };
+    
+    const handleDeleteTerm = () => {
+        const selected_term = terms.find(term => term.id === selectedTermId);
+        console.log(selected_term);
+
+        if (!selected_term) return;
+
+        const selected_term_index = terms.indexOf(selected_term);
+        console.log(`new selected term is ${selected_term_index}`);
+
+        if (selected_term_index <= 0 && terms.length > 1) {
+            setSelectedTermId(terms[1].id);
+        } else if (terms.length > 1) {
+            setSelectedTermId(terms[selected_term_index - 1].id);
+        }
+
+        selectedCourses.forEach(course => {
+            deleteCourse(course);
+        });
+
+        deleteTerm(selected_term);
+    };
+
     return (
         <>
             <RetroDiv className={styles.main_div}>
@@ -126,8 +171,8 @@ export default function CompactMain() {
                     <RetroDropdown onChange={e => handleTermSelected(e)} value={selectedTermId}>{term_select_fields}</RetroDropdown>
                 </RetroDivSubComponent>
 
-                <RetroDivButton orientation={Orientation.BOTTOM_LEFT}>+</RetroDivButton>
-                <RetroDivButton orientation={Orientation.BOTTOM_RIGHT}>x</RetroDivButton>
+                <RetroDivButton orientation={Orientation.BOTTOM_LEFT} onClick={handleAddNewTerm}>+</RetroDivButton>
+                <RetroDivButton orientation={Orientation.BOTTOM_RIGHT} onClick={() => {terms.length <= 1 ? null : handleDeleteTerm()}}>x</RetroDivButton>
 
                 <div className={styles.content}>Standing: {my_calculator.getOverallStanding(courses)}</div>
                 <div className={styles.content}>Term: {my_calculator.getTermStanding(selectedCourses)}</div>

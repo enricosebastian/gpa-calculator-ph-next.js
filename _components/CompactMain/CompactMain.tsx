@@ -10,7 +10,7 @@ import { useTheme } from "next-themes";
 import { Calculator } from "@/_types/Calculator";
 import styles from './CompactMain.module.scss';
 import RetroButton from "../RetroButton/RetroButton";
-
+import {v4 as uuid} from 'uuid'; 
 
 export default function CompactMain() {
     const {selectedCourses, selectedTermId, setSelectedTermId, university, setUniversity} = useMainContext();
@@ -23,9 +23,24 @@ export default function CompactMain() {
     const college_select_fields = colleges.map(college => <option key={college} value={college}>{college}</option>)
     const term_select_fields = terms.map(term => <option key={term.id} value={term.id}>{term.name}</option>);
 
-    const retroDivCourses = selectedCourses.map(course => <RetroDivCourse key={course.code} course={course}/>);
+    const retroDivCourses = selectedCourses.map(course => <RetroDivCourse key={course.id} course={course}/>);
 
     const my_calculator = new Calculator(university);
+
+    const handleAddNewCourse = () => {
+        const new_course_id = uuid();
+
+        const new_course: Course = {
+            id: new_course_id,
+            name: '',
+            code: '',
+            grade: '',
+            unit: '',
+            term_id: selectedTermId
+        };
+        
+        addCourse(new_course);
+    };
 
     const handleCollegeSelected = (e: ChangeEvent<HTMLSelectElement>) => {
         const new_selected_university: University = e.target.value as University;
@@ -70,7 +85,7 @@ export default function CompactMain() {
             </RetroDiv>
             
             <div className={styles.button_area}>
-                <RetroButton>Add a course</RetroButton>
+                <RetroButton onClick={() => handleAddNewCourse()}>Add a course</RetroButton>
             </div>
             
 
@@ -88,11 +103,21 @@ interface RetroDivCourseProps {
 
 
 function RetroDivCourse({course, ...props}: RetroDivCourseProps) {
+
+    const { addCourse, modifyCourse, deleteCourse} = useCourseContext();
+
+    const handleDelete = (deleted_course: Course) => {
+        deleteCourse(deleted_course);
+    }
+
+    if (course === undefined) {
+        return <></>;
+    }
+
     return (
         <RetroDiv className={props.className} style={{height: 100, marginBottom: 50}}>
-            <RetroDivButton orientation={Orientation.TOP_RIGHT}>x</RetroDivButton>
-
-            {course?.code}
+            <RetroDivButton orientation={Orientation.TOP_RIGHT} onClick={() => handleDelete(course)}>x</RetroDivButton>
+            {course.code}
         </RetroDiv>
     );
 }

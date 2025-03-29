@@ -7,6 +7,9 @@ import { useCourseContext } from "@/_context/CourseContext";
 import { ChangeEvent, MouseEventHandler, ReactNode } from "react";
 import { Course } from "@/_types/Course";
 import { useTheme } from "next-themes";
+import { Calculator } from "@/_types/Calculator";
+import styles from './CompactMain.module.scss';
+import RetroButton from "../RetroButton/RetroButton";
 
 
 export default function CompactMain() {
@@ -21,6 +24,8 @@ export default function CompactMain() {
     const term_select_fields = terms.map(term => <option key={term.id} value={term.id}>{term.name}</option>);
 
     const retroDivCourses = selectedCourses.map(course => <RetroDivCourse key={course.code} course={course}/>);
+
+    const my_calculator = new Calculator(university);
 
     const handleCollegeSelected = (e: ChangeEvent<HTMLSelectElement>) => {
         const new_selected_university: University = e.target.value as University;
@@ -46,7 +51,7 @@ export default function CompactMain() {
 
     return (
         <>
-            <RetroDiv>
+            <RetroDiv className={styles.main_div}>
                 <RetroDivSubComponent orientation={Orientation.TOP}>
                     <RetroDropdown onChange={e => handleCollegeSelected(e)}>{college_select_fields}</RetroDropdown>
                 </RetroDivSubComponent>
@@ -55,11 +60,15 @@ export default function CompactMain() {
                     <RetroDropdown onChange={e => handleTermSelected(e)} value={selectedTermId}>{term_select_fields}</RetroDropdown>
                 </RetroDivSubComponent>
 
-
                 <RetroDivButton orientation={Orientation.BOTTOM_LEFT}>+</RetroDivButton>
                 <RetroDivButton orientation={Orientation.BOTTOM_RIGHT}>x</RetroDivButton>
-            </RetroDiv>
 
+                <div className={styles.content}>Standing: {my_calculator.getOverallStanding(courses)}</div>
+                <div className={styles.content}>Term: {my_calculator.getTermStanding(selectedCourses)}</div>
+                <div className={styles.content}>GPA: {my_calculator.getScore(selectedCourses)}</div>
+                <div className={styles.content}>CGPA: {my_calculator.getScore(courses)}</div>
+            </RetroDiv>
+            
             {retroDivCourses}
         </>
     );

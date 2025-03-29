@@ -1,0 +1,19 @@
+
+
+.main_div {
+    width: 80%;
+    height: 500px;
+    padding-left: 50px;
+    padding-right: 50px;
+    
+    .content {
+        width: 100%;
+        font-family: var(--press-start-2p);
+        font-size: 25px;
+
+        &:not(:last-child) {
+            margin-bottom: 50px;
+        }
+    }
+
+}

@@ -8,8 +8,8 @@
 .retro_div {
     margin-bottom: 100px;
 
-    background-color: red;
-    border-color: black;
+    background-color: var(--background--color);
+    border-color: var(--border-color);
     border-width: 5px;
     border-style: solid;
     
@@ -19,13 +19,14 @@
     position: relative;
 
     display: flex;
+    flex-direction: column;
 
     align-items: center;
     justify-content: center;
 }
 
 .component {
-    background-color: green;
+    background-color: var(--background--color);
     height: var(--component_height);
     width: 80%;
 
@@ -42,11 +43,11 @@
 }
 
 .box {
-    background-color: yellow;
+    background-color: var(--background--color);
     height: var(--box_height);
     width: var(--box_width);
 
-    border-color: black;
+    border-color: var(--border-color);
     border-width: 5px;
     border-style: solid;
 
@@ -63,7 +64,11 @@
 
     font-family: var(--press-start-2p);
     font-size: 25px;
-    cursor: pointer;
+
+    &:hover {
+        background-color: var(--highlight);
+        cursor: pointer;
+    }
 
     &.top { top: calc(-1 * var(--box_height)/2); }
     &.bottom { bottom: calc(-1 * var(--box_height)/2);}

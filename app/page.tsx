@@ -19,7 +19,8 @@ export default function Home() {
 
   useEffect(() => {
     const checkScreenSize = () => {
-      setIsCompactMode(window.innerWidth <= 768);
+      console.log(window.innerWidth);
+      setIsCompactMode(window.innerWidth <= 800);
     };
 
     checkScreenSize();

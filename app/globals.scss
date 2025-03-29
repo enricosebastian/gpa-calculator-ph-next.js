@@ -1,5 +1,8 @@
 :root {
     --viewport-padding-size: 100px;
+    @media all and (max-width: 800px) {
+        --viewport-padding-size: 50px;
+    }
 }
 
 :root {
@@ -35,6 +38,13 @@
     --border--color: white;
     --highlight: #003461;
     --font--color: white;
+}
+
+* {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    background-color: transparent;
 }
 
 html, body {
@@ -80,7 +90,6 @@ body {
 
 .main--viewport {
     width: 100%;
-
     padding: var(--viewport-padding-size);
 }
 

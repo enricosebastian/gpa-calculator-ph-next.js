@@ -12,6 +12,7 @@ import styles from './CompactMain.module.scss';
 import RetroButton from "../RetroButton/RetroButton";
 import {v4 as uuid} from 'uuid'; 
 import { ExcelSheet } from '@/_types/ExcelSheet';
+import RetroInput from "../RetroInput/RetroInput";
 
 export default function CompactMain() {
     const {selectedCourses, selectedTermId, setSelectedTermId, university, setUniversity} = useMainContext();
@@ -171,9 +172,24 @@ function RetroDivCourse({course, ...props}: RetroDivCourseProps) {
     }
 
     return (
-        <RetroDiv className={props.className} style={{height: 100, marginBottom: 50}}>
+        <RetroDiv className={`${props.className} ${styles.course_container}`} style={{height: 100, marginBottom: 50}}>
             <RetroDivButton orientation={Orientation.TOP_RIGHT} onClick={() => handleDelete(course)}>x</RetroDivButton>
-            {course.code}
+
+            <div className={`${styles.content} ${styles.first}`}>
+                <RetroInput type="text" className={styles.retro_input}></RetroInput>
+            </div>
+
+            <div className={`${styles.content} ${styles.second}`}>
+                <RetroInput type="text" className={styles.retro_input}></RetroInput>
+            </div>
+
+            <div className={`${styles.content} ${styles.third}`}>
+                <RetroInput type="text" className={styles.retro_input}></RetroInput>
+            </div>
+
+            <div className={`${styles.content} ${styles.fourth}`}>
+                <RetroInput type="text" className={styles.retro_input}></RetroInput>
+            </div>
         </RetroDiv>
     );
 }

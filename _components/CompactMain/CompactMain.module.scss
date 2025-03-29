@@ -28,3 +28,52 @@
     
     gap: 30px;
 }
+
+.course_container {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+
+    display: grid;
+    grid-auto-flow: row; /* Add new items in columns */
+    grid-template-columns: repeat(2, 1fr);  /* Two rows: top and bottom, equal size*/
+
+    .content {
+        width: 100%;
+        height: 100%;
+
+        border-width: 0 0 0 0;
+        border-style: solid;
+        border-color: var(--border-color);
+
+        &.first {
+            border-right-width: 5px;
+            border-bottom-width: 5px;
+        }
+
+        &.second {
+            border-bottom-width: 5px;
+        }
+
+        &.third {
+            border-right-width: 5px;
+        }
+
+        .retro_input {
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            background-color: transparent;
+            border-style: none;
+
+            min-width: 0px;
+            width: 100%;
+
+            min-height: 0px;
+            height: 100%;
+
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+    }
+}

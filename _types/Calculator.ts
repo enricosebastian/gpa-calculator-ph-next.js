@@ -16,8 +16,6 @@ export class Calculator {
     private _formula: Formula;
 
     constructor(university: University) {
-        console.log(university);
-
         switch (university) {
             case University.DLSU:
                 this._formula = new DlsuFormula();

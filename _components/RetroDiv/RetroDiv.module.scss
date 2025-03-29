@@ -1,0 +1,101 @@
+:root {
+    --component_height: 50px;
+
+    --box_height: 50px;
+    --box_width: 50px;
+}
+
+.retro_div {
+    margin-bottom: 100px;
+
+    background-color: var(--background--color);
+    border-color: var(--border-color);
+    border-width: 5px;
+    border-style: solid;
+    
+    height: 100%;
+    width: 100%;
+
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.component {
+    background-color: var(--background--color);
+    height: var(--component_height);
+    width: 80%;
+
+    position: absolute;
+    z-index: 3;
+
+    &.top {
+        top: calc(-1 * var(--component_height)/2);
+    }
+
+    &.bottom {
+        bottom: calc(-1 * var(--component_height)/2);
+    }
+}
+
+.box {
+    background-color: var(--background--color);
+    height: var(--box_height);
+    width: var(--box_width);
+
+    border-color: var(--border-color);
+    border-width: 5px;
+    border-style: solid;
+
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+
+    position: absolute;
+    z-index: 3;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: var(--press-start-2p);
+    font-size: 25px;
+
+    &:hover {
+        background-color: var(--highlight);
+        cursor: pointer;
+    }
+
+    &.top { top: calc(-1 * var(--box_height)/2); }
+    &.bottom { bottom: calc(-1 * var(--box_height)/2);}
+    &.left { left: calc(-1 * var(--box_height)/2); }
+    &.right { right: calc(-1 * var(--box_height)/2);}
+
+    // Combination styles
+    &.top.left, &.left.top { 
+        top: calc(-1 * var(--box_height)/2);
+        left: calc(-1 * var(--box_height)/2);
+    }    
+    
+    // Top + Left
+    &.top.right, &.right.top { 
+        top: calc(-1 * var(--box_height)/2);
+        right: calc(-1 * var(--box_height)/2);
+    }  
+    
+    // Top + Right
+    &.bottom.left, &.left.bottom { 
+        bottom: calc(-1 * var(--box_height)/2);
+        left: calc(-1 * var(--box_height)/2);
+    }  
+    
+    // Bottom + Left
+    &.bottom.right, &.right.bottom {
+        bottom: calc(-1 * var(--box_height)/2);
+        right: calc(-1 * var(--box_height)/2);
+    }  // Bottom + Right
+}

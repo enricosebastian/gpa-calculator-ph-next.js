@@ -7,21 +7,64 @@ import Toolbar from "@/_components/Toolbar/Toolbar";
 import Table from "@/_components/Table/Table";
 import Sidebar from "@/_components/Sidebar/Sidebar";
 import Main from "@/_components/Main/Main";
+import { ReactNode, useEffect, useState } from "react";
+import {RetroDiv, RetroDivButton, RetroDivSubComponent} from "@/_components/RetroDiv/RetroDiv";
+import RetroDropdown from "@/_components/RetroDropdown/RetroDropdown";
+import { Orientation } from "@/_types/Enums";
+import CompactMain from "@/_components/CompactMain/CompactMain";
 
 export default function Home() {
+
+  const [isCompactMode, setIsCompactMode] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      console.log(window.innerWidth);
+      setIsCompactMode(window.innerWidth <= 800);
+    };
+
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
+
+  const content = isCompactMode? showCompactMode() : showDesktopMode();
+
   return (
     <CourseContextProvider>
       <TermContextProvider>
         <MainContextProvider>
-          <div className="main--header">PH UNIVERSITY GPA ESTIMATOR</div>
-          <div className="main--viewport">
-            <div className="main--content">
-              <Sidebar/>
-              <Main/>
-            </div>
-          </div>
+          {content}
         </MainContextProvider>
       </TermContextProvider>
     </CourseContextProvider>
+  );
+}
+
+function showCompactMode() : ReactNode {
+  return (
+    <>
+      <div className="main--viewport">
+        <CompactMain/>
+      </div>
+      
+    </>
+  );
+
+
+} 
+
+function showDesktopMode() : ReactNode {
+  return (
+    <>
+      <div className="main--header">PH UNIVERSITY GPA ESTIMATOR</div>
+      <div className="main--viewport">
+        <div className="main--content">
+          <Sidebar/>
+          <Main/>
+        </div>
+      </div>
+    </>
   );
 }

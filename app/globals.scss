@@ -1,5 +1,8 @@
 :root {
     --viewport-padding-size: 100px;
+    @media all and (max-width: 800px) {
+        --viewport-padding-size: 50px;
+    }
 }
 
 :root {
@@ -37,11 +40,18 @@
     --font--color: white;
 }
 
+* {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    background-color: transparent;
+}
+
 html, body {
     margin: 0px;
     padding: 0px;
 
-    height: 100%;
+    // height: 100%;
     width: 100%;
 
     background-color: var(--background--color);
@@ -80,7 +90,6 @@ body {
 
 .main--viewport {
     width: 100%;
-
     padding: var(--viewport-padding-size);
 }
 
@@ -94,8 +103,10 @@ body {
 
 .main--content {
     display: grid;
-    grid-template-columns: 0.5fr 2fr; /* Two columns: left side and right side */
-    grid-template-rows: 1fr 1fr;   /* Two rows: top and bottom */
+    grid-auto-flow: column; /* Add new items in columns */
+    grid-template-rows: repeat(2, 1fr);  /* Two rows: top and bottom, equal size*/
+
+    padding-top: 50px;
 }
 
 .hidden {

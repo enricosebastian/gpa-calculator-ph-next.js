@@ -87,9 +87,13 @@ export default function CompactMain() {
             <div className={styles.button_area}>
                 <RetroButton onClick={() => handleAddNewCourse()}>Add a course</RetroButton>
             </div>
-            
 
             {retroDivCourses}
+
+            <div className={styles.button_area}>
+                <RetroButton onClick={() => handleAddNewCourse()}>Import</RetroButton>
+                <RetroButton onClick={() => handleAddNewCourse()}>Export</RetroButton>
+            </div>
         </>
     );
 

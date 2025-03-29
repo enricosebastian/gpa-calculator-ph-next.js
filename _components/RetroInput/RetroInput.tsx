@@ -7,8 +7,18 @@ interface RetroInputProps {
     type: string,
     className?: string,
     style?: CSSProperties,
+    id?: string,
+    placeholder?: string,
 }
 
 export default function RetroInput(props: RetroInputProps) {
-    return <input className={`${styles.input} ${props.className}`} style={props.style} type={props.type} value={props.value} onChange={props.onChange}></input>
+    return (<input 
+                id={props.id} 
+                className={`${styles.input} ${props.className}`} 
+                placeholder={props.placeholder} 
+                style={props.style} 
+                type={props.type} 
+                value={props.value} 
+                onChange={props.onChange}>
+            </input>);
 }

@@ -167,6 +167,67 @@ function RetroDivCourse({course, ...props}: RetroDivCourseProps) {
         deleteCourse(deleted_course);
     }
 
+    const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (course === null)
+            return;
+
+        if (course === undefined)
+            return;
+
+        let modified_course: Course = {
+            id: course.id,
+            name: course.name,
+            code: course.code,
+            unit: course.unit,
+            grade: course.grade,
+            term_id: course.term_id,
+        }
+
+        const input_value: string = e.target.value;
+        const last_character: string = input_value[input_value.length - 1];
+        const number_of_period_occurences: number = input_value.replace(/[^.]/g, "").length;
+        const last_character_is_not_number: boolean = Number.isNaN(parseInt(last_character));
+
+        switch (e.target.id) {
+            case 'course_name':
+                modified_course.name = e.target.value;
+                break;
+            case 'course_code':
+                modified_course.code = e.target.value;
+                break;
+            case 'course_grade':
+                if (last_character === '.' && number_of_period_occurences > 1)
+                    break;
+
+                if (last_character === undefined || last_character === '.') {
+                    modified_course.grade = e.target.value;
+                    break;
+                }
+
+                if (last_character_is_not_number)
+                    break;
+                
+                modified_course.grade = input_value;
+                break;
+            case 'course_unit':
+                if (last_character === '.' && number_of_period_occurences > 1)
+                    break;
+
+                if (last_character === undefined || last_character === '.') {
+                    modified_course.unit = e.target.value;
+                    break;
+                }
+
+                if (last_character_is_not_number)
+                    break;
+
+                modified_course.unit = input_value;
+                break;
+        }
+
+        modifyCourse(modified_course);
+    }
+
     if (course === undefined) {
         return <></>;
     }
@@ -176,19 +237,19 @@ function RetroDivCourse({course, ...props}: RetroDivCourseProps) {
             <RetroDivButton orientation={Orientation.TOP_RIGHT} onClick={() => handleDelete(course)}>x</RetroDivButton>
 
             <div className={`${styles.content} ${styles.first}`}>
-                <RetroInput type="text" className={styles.retro_input}></RetroInput>
+                <RetroInput placeholder="coursed_code" id="course_code" type="text" className={styles.retro_input} value={course.code} onChange={(e) => handleOnChange(e)}></RetroInput>
             </div>
 
             <div className={`${styles.content} ${styles.second}`}>
-                <RetroInput type="text" className={styles.retro_input}></RetroInput>
+                <RetroInput placeholder="course_name" id="course_name" type="text" className={styles.retro_input} value={course.name} onChange={(e) => handleOnChange(e)}></RetroInput>
             </div>
 
             <div className={`${styles.content} ${styles.third}`}>
-                <RetroInput type="text" className={styles.retro_input}></RetroInput>
+                <RetroInput placeholder="units" id="course_unit" type="text" className={styles.retro_input} value={course.unit} onChange={(e) => handleOnChange(e)}></RetroInput>
             </div>
 
             <div className={`${styles.content} ${styles.fourth}`}>
-                <RetroInput type="text" className={styles.retro_input}></RetroInput>
+                <RetroInput placeholder="graded score" id="course_grade" type="text" className={styles.retro_input} value={course.grade} onChange={(e) => handleOnChange(e)}></RetroInput>
             </div>
         </RetroDiv>
     );

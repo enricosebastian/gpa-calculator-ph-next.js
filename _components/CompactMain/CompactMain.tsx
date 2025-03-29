@@ -11,6 +11,7 @@ import { Calculator } from "@/_types/Calculator";
 import styles from './CompactMain.module.scss';
 import RetroButton from "../RetroButton/RetroButton";
 import {v4 as uuid} from 'uuid'; 
+import { ExcelSheet } from '@/_types/ExcelSheet';
 
 export default function CompactMain() {
     const {selectedCourses, selectedTermId, setSelectedTermId, university, setUniversity} = useMainContext();
@@ -62,6 +63,56 @@ export default function CompactMain() {
 
         setSelectedTermId(new_selected_term.id);
     };
+
+    const handleClickImportButton = () => {
+            document.getElementById('import_grades_button')?.click();
+        }
+    
+        const handleExportData = async () => {
+            ExcelSheet.export(terms, courses);
+        }
+    
+        const handleFileUpload = async () => {
+            const file_uploader = document.querySelector<HTMLInputElement>('#import_grades_button');
+            if (file_uploader === null)
+                return;
+    
+            if (file_uploader.files === null)
+                return;
+    
+            if (file_uploader.files.length > 1)
+                return;
+    
+            const file = file_uploader.files[0];
+            const excel_sheet: ExcelSheet = new ExcelSheet();
+    
+            excel_sheet.initialize(file).then((data) => {
+                const [new_terms, new_courses] = excel_sheet.getTermsAndCourses();
+    
+                courses.forEach(course => {
+                    deleteCourse(course);
+                });
+    
+                terms.forEach(term => {
+                    deleteTerm(term);
+                });
+    
+                new_terms.forEach(term => {
+                    addTerm(term);
+                });
+    
+                new_courses.forEach(course => {
+                    addCourse(course);
+                });
+    
+                if (new_terms.length > 0) {
+                    setSelectedTermId(new_terms[0].id);
+                }
+            }).catch((error) => {
+                alert(error);
+                return;
+            })
+        }
     
 
     return (
@@ -91,8 +142,9 @@ export default function CompactMain() {
             {retroDivCourses}
 
             <div className={styles.button_area}>
-                <RetroButton onClick={() => handleAddNewCourse()}>Import</RetroButton>
-                <RetroButton onClick={() => handleAddNewCourse()}>Export</RetroButton>
+                <input id='import_grades_button' className='hidden' type='file' accept='.xls,.xlsx' onChange={handleFileUpload}></input>
+                <RetroButton  onClick={handleClickImportButton} title='File support is limited to only .xls and .xlsx types!'>Import grades</RetroButton>
+                <RetroButton onClick={handleExportData}>Export grades</RetroButton>
             </div>
         </>
     );

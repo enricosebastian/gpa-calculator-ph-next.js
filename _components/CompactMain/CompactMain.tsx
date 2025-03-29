@@ -69,52 +69,51 @@ export default function CompactMain() {
             document.getElementById('import_grades_button')?.click();
         }
     
-        const handleExportData = async () => {
-            ExcelSheet.export(terms, courses);
-        }
-    
-        const handleFileUpload = async () => {
-            const file_uploader = document.querySelector<HTMLInputElement>('#import_grades_button');
-            if (file_uploader === null)
-                return;
-    
-            if (file_uploader.files === null)
-                return;
-    
-            if (file_uploader.files.length > 1)
-                return;
-    
-            const file = file_uploader.files[0];
-            const excel_sheet: ExcelSheet = new ExcelSheet();
-    
-            excel_sheet.initialize(file).then((data) => {
-                const [new_terms, new_courses] = excel_sheet.getTermsAndCourses();
-    
-                courses.forEach(course => {
-                    deleteCourse(course);
-                });
-    
-                terms.forEach(term => {
-                    deleteTerm(term);
-                });
-    
-                new_terms.forEach(term => {
-                    addTerm(term);
-                });
-    
-                new_courses.forEach(course => {
-                    addCourse(course);
-                });
-    
-                if (new_terms.length > 0) {
-                    setSelectedTermId(new_terms[0].id);
-                }
-            }).catch((error) => {
-                alert(error);
-                return;
-            })
-        }
-    
+    const handleExportData = async () => {
+        ExcelSheet.export(terms, courses);
+    }
+
+    const handleFileUpload = async () => {
+        const file_uploader = document.querySelector<HTMLInputElement>('#import_grades_button');
+        if (file_uploader === null)
+            return;
+
+        if (file_uploader.files === null)
+            return;
+
+        if (file_uploader.files.length > 1)
+            return;
+
+        const file = file_uploader.files[0];
+        const excel_sheet: ExcelSheet = new ExcelSheet();
+
+        excel_sheet.initialize(file).then((data) => {
+            const [new_terms, new_courses] = excel_sheet.getTermsAndCourses();
+
+            courses.forEach(course => {
+                deleteCourse(course);
+            });
+
+            terms.forEach(term => {
+                deleteTerm(term);
+            });
+
+            new_terms.forEach(term => {
+                addTerm(term);
+            });
+
+            new_courses.forEach(course => {
+                addCourse(course);
+            });
+
+            if (new_terms.length > 0) {
+                setSelectedTermId(new_terms[0].id);
+            }
+        }).catch((error) => {
+            alert(error);
+            return;
+        })
+    }
 
     return (
         <>
